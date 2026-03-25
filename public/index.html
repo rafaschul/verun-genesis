@@ -20,7 +20,8 @@
 }
 body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh}
 a{color:var(--purple);text-decoration:none}
-/* NAV */
+
+/* ─── NAV ─── */
 .nav{position:sticky;top:0;z-index:100;background:#fff;border-bottom:1px solid var(--border);
   padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between;gap:16px}
 .nav-logo{font-weight:800;font-size:18px;color:var(--text)}
@@ -30,7 +31,50 @@ a{color:var(--purple);text-decoration:none}
   letter-spacing:.06em;text-transform:uppercase}
 .stellar-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-/* HERO */
+
+/* ─── MODE SWITCHER (sticky below nav) ─── */
+.mode-bar{position:sticky;top:60px;z-index:99;background:#fff;border-bottom:1px solid var(--border);
+  padding:12px 24px;display:flex;justify-content:center}
+.mode-toggle{display:flex;background:var(--bg);border:1.5px solid var(--border);border-radius:50px;
+  padding:4px;gap:4px;position:relative}
+.mode-btn{display:flex;align-items:center;gap:8px;padding:10px 28px;border-radius:50px;
+  font-size:14px;font-weight:600;cursor:pointer;border:none;background:transparent;
+  color:var(--text2);transition:.2s;white-space:nowrap}
+.mode-btn .mode-icon{font-size:18px}
+.mode-btn.active{background:var(--purple);color:#fff;box-shadow:0 2px 12px rgba(123,97,255,.3)}
+.mode-btn.active-agent{background:var(--text);color:#fff;box-shadow:0 2px 12px rgba(13,13,43,.2)}
+.mode-hint{text-align:center;font-size:12px;color:var(--text3);margin-top:6px;display:none}
+
+/* ─── SECTIONS VISIBILITY ─── */
+.human-section{display:block}
+.agent-section{display:none}
+body.agent-mode .human-section{display:none}
+body.agent-mode .agent-section{display:block}
+
+/* ─── COMMON ─── */
+.container{max-width:1100px;margin:0 auto;padding:0 24px}
+section{padding:72px 0}
+.section-eyebrow{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--purple);text-align:center;margin-bottom:12px}
+.section-title{font-size:clamp(26px,4vw,40px);font-weight:800;text-align:center;margin-bottom:16px}
+.section-sub{font-size:16px;color:var(--text2);text-align:center;max-width:560px;margin:0 auto 48px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;border-radius:8px;
+  font-weight:600;font-size:15px;cursor:pointer;border:none;transition:.15s}
+.btn-primary{background:var(--purple);color:#fff}
+.btn-primary:hover{background:#6a50f0}
+.btn-dark{background:var(--text);color:#fff}
+.btn-dark:hover{background:#1a1a3a}
+.btn-outline{background:transparent;color:var(--purple);border:1.5px solid var(--purple-mid)}
+.btn-outline:hover{background:var(--purple-light)}
+.pill{display:inline-flex;align-items:center;padding:2px 10px;border-radius:20px;font-size:11px;font-weight:700}
+.pill-green{background:var(--green-light);color:#065F46}
+.pill-purple{background:var(--purple-light);color:var(--purple)}
+.pill-blue{background:#EFF6FF;color:var(--blue)}
+.pill-amber{background:#FEF3C7;color:#92400E}
+.pill-red{background:#FFF5F5;color:var(--red)}
+.pill-dark{background:#F3F4F6;color:var(--text)}
+
+/* ─── HERO HUMAN ─── */
 .hero{padding:80px 24px;text-align:center;background:linear-gradient(180deg,#F0EEFF 0%,var(--bg) 100%)}
 .hero-eyebrow{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
   color:var(--purple);margin-bottom:16px}
@@ -41,49 +85,44 @@ a{color:var(--purple);text-decoration:none}
 .hero-stat{background:#fff;border:1px solid var(--border);border-radius:8px;
   padding:8px 16px;font-size:13px;color:var(--text2)}
 .hero-stat strong{color:var(--text);display:block;font-size:15px}
-/* COUNTER */
 .counter-bar{background:#fff;border:1px solid var(--border);border-radius:12px;
   padding:20px 28px;max-width:600px;margin:0 auto 40px;text-align:left}
 .counter-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
 .counter-label{font-size:13px;color:var(--text2)}
 .counter-nums{font-family:var(--mono);font-size:18px;font-weight:600;color:var(--text)}
-.counter-nums span{color:var(--purple)}
 .progress-bar{height:8px;background:var(--border);border-radius:4px;overflow:hidden}
 .progress-fill{height:100%;background:linear-gradient(90deg,var(--purple),var(--green));
   border-radius:4px;transition:width .8s ease}
 .spots-left{font-size:12px;color:var(--text3);margin-top:8px}
-/* BUTTONS */
-.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;border-radius:8px;
-  font-weight:600;font-size:15px;cursor:pointer;border:none;transition:.15s}
-.btn-primary{background:var(--purple);color:#fff}
-.btn-primary:hover{background:#6a50f0}
-.btn-outline{background:transparent;color:var(--purple);border:1.5px solid var(--purple-mid)}
-.btn-outline:hover{background:var(--purple-light)}
-.btn-sm{padding:8px 16px;font-size:13px}
-/* CONTAINER */
-.container{max-width:1100px;margin:0 auto;padding:0 24px}
-/* SECTIONS */
-section{padding:72px 0}
-.section-eyebrow{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
-  color:var(--purple);text-align:center;margin-bottom:12px}
-.section-title{font-size:clamp(26px,4vw,40px);font-weight:800;text-align:center;margin-bottom:16px}
-.section-sub{font-size:16px;color:var(--text2);text-align:center;max-width:560px;margin:0 auto 48px}
-/* TIERS */
+
+/* ─── HERO AGENT ─── */
+.hero-agent{padding:48px 24px 40px;background:#0D0D2B;color:#fff;text-align:center}
+.hero-agent .eyebrow{font-family:var(--mono);font-size:11px;color:#7B61FF;
+  letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px}
+.hero-agent h1{font-size:clamp(28px,5vw,52px);font-weight:800;line-height:1.15;margin-bottom:16px}
+.hero-agent h1 .hl{color:#7B61FF}
+.hero-agent .sub{font-size:15px;color:#9CA3AF;max-width:560px;margin:0 auto 32px;font-family:var(--mono)}
+.agent-stats{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin-bottom:32px}
+.agent-stat{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);
+  border-radius:8px;padding:8px 16px;font-size:12px;font-family:var(--mono);color:#9CA3AF}
+.agent-stat strong{color:#fff;display:block;font-size:14px}
+.agent-cta-row{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+
+/* ─── TIERS ─── */
 .tiers-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin-bottom:40px}
-.tier-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:28px;
-  box-shadow:var(--shadow)}
+.tier-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow)}
 .tier-card.featured{border-color:var(--purple-mid);background:var(--purple-light)}
 .tier-badge{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;
   padding:4px 10px;border-radius:20px;margin-bottom:12px}
 .badge-gold{background:#FEF3C7;color:#92400E}
 .badge-silver{background:#F3F4F6;color:#374151}
-.badge-bronze{background:#FEF3C7;color:#92400E}
 .tier-name{font-size:18px;font-weight:700;margin-bottom:4px}
 .tier-range{font-family:var(--mono);font-size:12px;color:var(--text3);margin-bottom:16px}
 .tier-features{list-style:none;display:flex;flex-direction:column;gap:8px}
 .tier-features li{font-size:14px;color:var(--text2);display:flex;gap:8px;align-items:flex-start}
 .tier-features li::before{content:"✓";color:var(--green);font-weight:700;flex-shrink:0}
-/* FORM */
+
+/* ─── FORM ─── */
 .form-section{background:#fff;border:1px solid var(--border);border-radius:var(--radius);
   padding:40px;max-width:600px;margin:0 auto;box-shadow:var(--shadow)}
 .form-title{font-size:22px;font-weight:700;margin-bottom:8px}
@@ -94,8 +133,7 @@ section{padding:72px 0}
 .tab-row{display:flex;gap:4px;background:var(--bg);border-radius:8px;padding:4px;margin-bottom:4px}
 .tab{flex:1;padding:8px;border-radius:6px;font-size:13px;font-weight:500;cursor:pointer;
   background:transparent;border:none;color:var(--text2);transition:.15s;text-align:center}
-.tab.active{background:#fff;color:var(--purple);font-weight:700;
-  box-shadow:0 1px 3px rgba(0,0,0,.1)}
+.tab.active{background:#fff;color:var(--purple);font-weight:700;box-shadow:0 1px 3px rgba(0,0,0,.1)}
 .input{width:100%;padding:10px 14px;border:1.5px solid var(--border);border-radius:8px;
   font-size:14px;font-family:var(--mono);background:#fff;color:var(--text);transition:.15s}
 .input:focus{outline:none;border-color:var(--purple);box-shadow:0 0 0 3px rgba(123,97,255,.1)}
@@ -103,13 +141,10 @@ section{padding:72px 0}
 .input-hint{font-size:12px;color:var(--text3);margin-top:6px}
 .form-divider{border:none;border-top:1px solid var(--border);margin:24px 0}
 .form-submit{width:100%;padding:14px;font-size:16px;font-weight:700}
-/* RESULT */
-.result-box{display:none;margin-top:24px;border-radius:var(--radius);padding:24px;
-  border:1.5px solid var(--border)}
+.result-box{display:none;margin-top:24px;border-radius:var(--radius);padding:24px;border:1.5px solid var(--border)}
 .result-box.success{background:var(--green-light);border-color:#86EFAC}
 .result-box.error{background:#FFF5F5;border-color:#FECACA}
-.result-claim-id{font-family:var(--mono);font-size:22px;font-weight:700;color:var(--purple);
-  margin-bottom:4px}
+.result-claim-id{font-family:var(--mono);font-size:22px;font-weight:700;color:var(--purple);margin-bottom:4px}
 .result-tier{font-size:13px;color:var(--text2);margin-bottom:16px}
 .result-rows{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
 .result-row{display:flex;justify-content:space-between;font-size:13px}
@@ -120,45 +155,83 @@ section{padding:72px 0}
 .cert-block{background:var(--bg);border-radius:8px;padding:14px;font-family:var(--mono);
   font-size:11px;color:var(--text2);overflow-x:auto;max-height:200px;overflow-y:auto;
   margin-top:12px;border:1px solid var(--border)}
-/* FEATURES */
+
+/* ─── SCORE TABLE ─── */
+.score-table{width:100%;border-collapse:collapse;font-size:14px;margin-bottom:32px}
+.score-table th{text-align:left;padding:10px 16px;background:var(--bg);font-size:11px;
+  font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);border-bottom:2px solid var(--border)}
+.score-table td{padding:12px 16px;border-bottom:1px solid var(--border)}
+.score-table tr:last-child td{border-bottom:none}
+
+/* ─── AGENT API DOCS ─── */
+.agent-hero-inner{max-width:900px;margin:0 auto}
+.api-section{padding:48px 0;background:#0D0D2B}
+.api-section .container{max-width:1100px;margin:0 auto;padding:0 24px}
+.api-section .section-eyebrow{color:#7B61FF}
+.api-section .section-title{color:#fff}
+.api-section .section-sub{color:#9CA3AF}
+.code-block{background:#111827;border:1px solid rgba(255,255,255,.08);border-radius:12px;
+  overflow:hidden;margin-bottom:24px}
+.code-header{display:flex;align-items:center;justify-content:space-between;
+  padding:12px 16px;border-bottom:1px solid rgba(255,255,255,.08);background:#1F2937}
+.code-header-left{display:flex;align-items:center;gap:10px}
+.code-lang{font-family:var(--mono);font-size:11px;color:#6B7280;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.code-title{font-family:var(--mono);font-size:12px;color:#9CA3AF}
+.code-copy{font-size:11px;color:#6B7280;cursor:pointer;padding:4px 8px;border-radius:4px;
+  border:1px solid rgba(255,255,255,.08);background:transparent;font-family:var(--mono)}
+.code-copy:hover{color:#9CA3AF;border-color:rgba(255,255,255,.2)}
+pre.code{padding:20px;overflow-x:auto;font-family:var(--mono);font-size:13px;line-height:1.8;margin:0}
+.c-comment{color:#4B5563}
+.c-method{color:#F472B6}
+.c-url{color:#34D399}
+.c-key{color:#A5B4FC}
+.c-val{color:#FCD34D}
+.c-str{color:#6EE7B7}
+.c-num{color:#FB923C}
+.c-kw{color:#C084FC}
+.c-ok{color:#34D399}
+.c-err{color:#F87171}
+
+/* ─── ENDPOINT CARDS ─── */
+.endpoint-grid{display:grid;gap:16px;margin-bottom:32px}
+.endpoint-card{background:#111827;border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:20px}
+.endpoint-row{display:flex;align-items:center;gap:12px;margin-bottom:8px;flex-wrap:wrap}
+.method-badge{font-family:var(--mono);font-size:11px;font-weight:700;padding:3px 10px;border-radius:4px}
+.method-get{background:#064E3B;color:#34D399}
+.method-post{background:#1E3A5F;color:#60A5FA}
+.endpoint-url{font-family:var(--mono);font-size:14px;color:#E5E7EB}
+.endpoint-desc{font-size:13px;color:#6B7280}
+.endpoint-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.etag{font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;
+  border:1px solid rgba(255,255,255,.08);color:#9CA3AF;font-family:var(--mono)}
+
+/* ─── MCP CARDS ─── */
+.mcp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-bottom:32px}
+.mcp-card{background:#111827;border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:20px}
+.mcp-card-name{font-family:var(--mono);font-size:14px;font-weight:600;color:#A5B4FC;margin-bottom:6px}
+.mcp-card-desc{font-size:12px;color:#6B7280;line-height:1.5}
+.mcp-card-tag{display:inline-block;margin-top:8px;font-size:10px;font-family:var(--mono);
+  color:#34D399;border:1px solid #064E3B;border-radius:4px;padding:2px 6px}
+
+/* ─── FEATURES GRID ─── */
 .features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
 .feature-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);
   padding:24px;box-shadow:var(--shadow)}
 .feature-icon{font-size:28px;margin-bottom:12px}
 .feature-title{font-weight:700;margin-bottom:8px}
 .feature-desc{font-size:14px;color:var(--text2);line-height:1.6}
-/* SCORE TABLE */
-.score-table{width:100%;border-collapse:collapse;font-size:14px;margin-bottom:32px}
-.score-table th{text-align:left;padding:10px 16px;background:var(--bg);
-  font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
-  color:var(--text3);border-bottom:2px solid var(--border)}
-.score-table td{padding:12px 16px;border-bottom:1px solid var(--border)}
-.score-table tr:last-child td{border-bottom:none}
-.pill{display:inline-flex;align-items:center;padding:2px 10px;border-radius:20px;
-  font-size:11px;font-weight:700}
-.pill-green{background:var(--green-light);color:#065F46}
-.pill-purple{background:var(--purple-light);color:var(--purple)}
-.pill-blue{background:#EFF6FF;color:var(--blue)}
-.pill-amber{background:#FEF3C7;color:#92400E}
-.pill-red{background:#FFF5F5;color:var(--red)}
-/* API DOCS */
-.api-block{background:#0D0D2B;border-radius:var(--radius);padding:24px;overflow-x:auto;margin-bottom:20px}
-.api-block pre{font-family:var(--mono);font-size:13px;color:#A5B4FC;line-height:1.8}
-.api-block .method{color:#F472B6}
-.api-block .url{color:#34D399}
-.api-block .key{color:#A5B4FC}
-.api-block .val{color:#FCD34D}
-.api-block .comment{color:#6B7280}
-/* FOOTER */
+
+/* ─── SPINNER ─── */
+.spinner{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,.3);
+  border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ─── FOOTER ─── */
 footer{border-top:1px solid var(--border);padding:40px 24px;text-align:center;
   color:var(--text3);font-size:13px}
 footer a{color:var(--text3)}
 footer a:hover{color:var(--purple)}
 .footer-links{display:flex;justify-content:center;gap:24px;margin-bottom:16px;flex-wrap:wrap}
-/* LOADING */
-.spinner{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,.3);
-  border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
 </style>
 </head>
 <body>
@@ -166,16 +239,35 @@ footer a:hover{color:var(--purple)}
 <!-- NAV -->
 <nav class="nav">
   <div class="nav-logo">Verun <span class="kya">KYA</span></div>
-  <div class="nav-right">
-    <div class="stellar-badge">
-      <span class="stellar-dot"></span>
-      Stellar Testnet · Genesis Beta
-    </div>
+  <div class="stellar-badge">
+    <span class="stellar-dot"></span>
+    Stellar Testnet · Genesis Beta
   </div>
 </nav>
 
-<!-- HERO -->
-<section class="hero" id="home">
+<!-- ═══ MODE SWITCHER ═══ -->
+<div class="mode-bar">
+  <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
+    <div class="mode-toggle">
+      <button class="mode-btn active" id="btn-human" onclick="setMode('human')">
+        <span class="mode-icon">🏛️</span> For Humans
+      </button>
+      <button class="mode-btn" id="btn-agent" onclick="setMode('agent')">
+        <span class="mode-icon">🤖</span> For Agents
+      </button>
+    </div>
+    <div style="font-size:11px;color:var(--text3)" id="mode-sub">
+      Validators · Compliance · Partnerships
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     HUMAN MODE
+════════════════════════════════════════ -->
+
+<!-- HERO HUMAN -->
+<section class="hero human-section" id="home">
   <div class="container">
     <div class="hero-eyebrow">Verun Protocol · Genesis Registration · March 2026</div>
     <h1>Secure Your Agent's<br><span>Identity. On Stellar.</span></h1>
@@ -187,8 +279,6 @@ footer a:hover{color:var(--purple)}
       <div class="hero-stat"><strong>Stellar</strong> On-chain Anchor</div>
       <div class="hero-stat"><strong>June 2026</strong> Go-Live</div>
     </div>
-
-    <!-- Live counter -->
     <div class="counter-bar">
       <div class="counter-row">
         <span class="counter-label">Genesis spots claimed</span>
@@ -197,17 +287,16 @@ footer a:hover{color:var(--purple)}
       <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
       <div class="spots-left" id="spots-left">Loading…</div>
     </div>
-
     <a href="#register" class="btn btn-primary">Claim Your Genesis Spot →</a>
   </div>
 </section>
 
-<!-- TIERS -->
-<section id="tiers">
+<!-- TIERS HUMAN -->
+<section class="human-section" id="tiers">
   <div class="container">
     <div class="section-eyebrow">Genesis Tiers</div>
     <h2 class="section-title">Three Founding Classes</h2>
-    <p class="section-sub">Earlier positions carry permanently lower claim IDs. vga-0001 is always the first — it cannot be renumbered.</p>
+    <p class="section-sub">Earlier positions carry permanently lower claim IDs. vga-0001 is always the first.</p>
     <div class="tiers-grid">
       <div class="tier-card featured">
         <div class="tier-badge badge-gold">🥇 Genesis Founding</div>
@@ -235,7 +324,7 @@ footer a:hover{color:var(--purple)}
         </ul>
       </div>
       <div class="tier-card">
-        <div class="tier-badge badge-bronze">🥉 Genesis Open</div>
+        <div class="tier-badge badge-silver">🥉 Genesis Open</div>
         <div class="tier-name">vga-100001 – vga-1M</div>
         <div class="tier-range">Future — post validator network</div>
         <ul class="tier-features">
@@ -248,17 +337,15 @@ footer a:hover{color:var(--purple)}
   </div>
 </section>
 
-<!-- REGISTRATION FORM -->
-<section id="register" style="background:var(--purple-light);padding:72px 0">
+<!-- REGISTRATION FORM HUMAN -->
+<section class="human-section" id="register" style="background:var(--purple-light);padding:72px 0">
   <div class="container">
     <div class="section-eyebrow">Genesis Registration</div>
     <h2 class="section-title">Claim Your Position</h2>
-    <p class="section-sub">Register your AI agent's identity on Verun Protocol. Your position is anchored on Stellar Testnet and secured for mainnet launch in June 2026.</p>
-
+    <p class="section-sub">Register your AI agent's identity. Anchored on Stellar Testnet. Secured for mainnet launch in June 2026.</p>
     <div class="form-section">
       <div class="form-title">Register Genesis Agent</div>
-      <div class="form-sub">First 1,000 spots require an invite code. Spots 1,001–10,000 are open with wallet or GitHub verification.</div>
-
+      <div class="form-sub">First 1,000 spots require an invite code. Spots 1,001–10,000 open with wallet or GitHub verification.</div>
       <div class="form-group">
         <div class="form-label">Identifier Type</div>
         <div class="tab-row">
@@ -268,40 +355,35 @@ footer a:hover{color:var(--purple)}
           <button class="tab" onclick="setTab('email')">Email</button>
         </div>
       </div>
-
       <div class="form-group" id="field-stellar">
         <label class="form-label">Stellar Pubnet Address <span>(G... · 56 chars)</span></label>
-        <input class="input" id="input-address" placeholder="GDRXE2BQUC3AZNPVFSCEZ76NJ3WWL25FYFK6RIGPZPD4TDLKF5AGCPQ" autocomplete="off"/>
+        <input class="input" id="input-address" placeholder="GDRXE2BQUC3AZNPVFSCEZ76NJ3WWL25FYFK6RIGPZPD4TDLKF5AGCPQ"/>
         <div class="input-hint">Must be funded on Stellar Pubnet · Account must be 7+ days old</div>
       </div>
       <div class="form-group" id="field-evm" style="display:none">
         <label class="form-label">EVM Address <span>(0x... · 42 chars)</span></label>
-        <input class="input" id="input-evm" placeholder="0x4C8585A3f2e6B19a7c9D1E48F0b2d5A7e3C8f1B2" autocomplete="off"/>
+        <input class="input" id="input-evm" placeholder="0x4C8585A3f2e6B19a7c9D1E48F0b2d5A7e3C8f1B2"/>
         <div class="input-hint">Must have transaction history on Ethereum mainnet</div>
       </div>
       <div class="form-group" id="field-github" style="display:none">
         <label class="form-label">GitHub Repository URL</label>
-        <input class="input" id="input-github" placeholder="https://github.com/yourorg/your-agent" autocomplete="off"/>
-        <div class="input-hint">GitHub account must be 30+ days old · Score 200 (upgrade to 350 by connecting wallet)</div>
+        <input class="input" id="input-github" placeholder="https://github.com/yourorg/your-agent"/>
+        <div class="input-hint">Account must be 30+ days old · Score 200 (upgrade later with wallet)</div>
       </div>
       <div class="form-group" id="field-email" style="display:none">
         <label class="form-label">Email Address</label>
-        <input class="input" id="input-email" placeholder="agent-operator@yourcompany.com" type="email" autocomplete="off"/>
-        <div class="input-hint">Provisional score 200 · Connect wallet later to upgrade to 350</div>
+        <input class="input" id="input-email" placeholder="agent-operator@yourcompany.com" type="email"/>
+        <div class="input-hint">Provisional score 200 · Connect wallet to upgrade to 350</div>
       </div>
-
       <hr class="form-divider"/>
-
       <div class="form-group">
-        <label class="form-label">Invite Code <span>(required for first 1,000 spots · optional after)</span></label>
-        <input class="input" id="input-invite" placeholder="VERUN-XXXX-XXXX" style="text-transform:uppercase" autocomplete="off"/>
-        <div class="input-hint">Don't have an invite? <a href="https://verun.network">Request one at verun.network</a></div>
+        <label class="form-label">Invite Code <span>(required for first 1,000 spots)</span></label>
+        <input class="input" id="input-invite" placeholder="VERUN-XXXX-XXXX" style="text-transform:uppercase"/>
+        <div class="input-hint">Don't have one? <a href="https://verun.network">Request at verun.network</a></div>
       </div>
-
       <button class="btn btn-primary form-submit" id="submit-btn" onclick="submitRegistration()">
         Claim Genesis Spot →
       </button>
-
       <div class="result-box" id="result-box">
         <div class="result-claim-id" id="result-claim-id"></div>
         <div class="result-tier" id="result-tier"></div>
@@ -316,102 +398,29 @@ footer a:hover{color:var(--purple)}
   </div>
 </section>
 
-<!-- SCORE TABLE -->
-<section id="scores">
+<!-- SCORE TABLE HUMAN -->
+<section class="human-section" id="scores">
   <div class="container">
     <div class="section-eyebrow">KYA Score System</div>
     <h2 class="section-title">What Your Score Unlocks</h2>
-    <p class="section-sub">Scores grow through validator attestations and network activity. Genesis agents start at 350 — above the Read threshold from day one.</p>
+    <p class="section-sub">Genesis agents start at 350 — above the Read threshold from day one.</p>
     <table class="score-table">
-      <thead>
-        <tr>
-          <th>Score</th><th>Tier</th><th>Operations</th><th>Kickback</th><th>Genesis Status</th>
-        </tr>
-      </thead>
+      <thead><tr>
+        <th>Score</th><th>Tier</th><th>Operations</th><th>Kickback</th><th>Genesis Bonus</th>
+      </tr></thead>
       <tbody>
-        <tr>
-          <td><span class="pill pill-red">0–299</span></td>
-          <td>Blocked</td>
-          <td>None</td>
-          <td>0%</td>
-          <td>—</td>
-        </tr>
-        <tr>
-          <td><span class="pill pill-purple">300–499</span></td>
-          <td>Active</td>
-          <td>Read</td>
-          <td>0%</td>
-          <td>Genesis: 350 ✓</td>
-        </tr>
-        <tr>
-          <td><span class="pill pill-blue">500–599</span></td>
-          <td>Verified</td>
-          <td>Read · Mint · Transfer</td>
-          <td>5%</td>
-          <td>—</td>
-        </tr>
-        <tr>
-          <td><span class="pill pill-blue">600–799</span></td>
-          <td>Trusted</td>
-          <td>Read · Mint · Transfer · Order</td>
-          <td>5%</td>
-          <td>—</td>
-        </tr>
-        <tr>
-          <td><span class="pill pill-green">800–1000</span></td>
-          <td>Elite</td>
-          <td>All Operations</td>
-          <td>10%</td>
-          <td>—</td>
-        </tr>
+        <tr><td><span class="pill pill-red">0–299</span></td><td>Blocked</td><td>None</td><td>0%</td><td>—</td></tr>
+        <tr><td><span class="pill pill-purple">300–499</span></td><td>Active</td><td>Read</td><td>0%</td><td>Genesis: 350 ✓</td></tr>
+        <tr><td><span class="pill pill-blue">500–599</span></td><td>Verified</td><td>Read · Mint · Transfer</td><td>5%</td><td>—</td></tr>
+        <tr><td><span class="pill pill-blue">600–799</span></td><td>Trusted</td><td>Read · Mint · Transfer · Order</td><td>5%</td><td>—</td></tr>
+        <tr><td><span class="pill pill-green">800–1000</span></td><td>Elite</td><td>All Operations</td><td>10%</td><td>—</td></tr>
       </tbody>
     </table>
   </div>
 </section>
 
-<!-- MCP / API DOCS -->
-<section id="api" style="background:#fff">
-  <div class="container">
-    <div class="section-eyebrow">MCP Integration</div>
-    <h2 class="section-title">Callable by Any AI Agent</h2>
-    <p class="section-sub">The verun-kya MCP tool lets Claude, GPT, and any MCP-compatible agent check scores and register directly — no API key required for reads.</p>
-
-    <div class="api-block"><pre><span class="comment">// MCP Tool: check_kya_score</span>
-<span class="comment">// Works in Claude, any MCP-compatible agent</span>
-
-<span class="key">tool</span>: <span class="val">"check_kya_score"</span>
-<span class="key">input</span>: {
-  <span class="key">"address"</span>: <span class="val">"GDRXE2BQUC3AZNPVFSCEZ76NJ3WWL25FYFK6RIGPZPD4TDLKF5AGCPQ"</span>,
-  <span class="key">"operation"</span>: <span class="val">"transfer"</span>  <span class="comment">// optional</span>
-}
-
-<span class="comment">// Response</span>
-{
-  <span class="key">"score"</span>: <span class="val">820</span>,
-  <span class="key">"tier"</span>: <span class="val">"TRUSTED"</span>,
-  <span class="key">"permitted"</span>: <span class="val">true</span>,
-  <span class="key">"kickback"</span>: <span class="val">"10%"</span>,
-  <span class="key">"genesis"</span>: { <span class="key">"claim_id"</span>: <span class="val">"vga-0042"</span>, <span class="key">"tier"</span>: <span class="val">"Genesis Founding"</span> },
-  <span class="key">"anchor"</span>: { <span class="key">"tx_hash"</span>: <span class="val">"a3f9c2d..."</span>, <span class="key">"explorer_url"</span>: <span class="val">"stellar.expert/..."</span> }
-}</pre></div>
-
-    <div class="api-block"><pre><span class="comment">// REST API — also usable directly</span>
-
-<span class="method">GET</span>  <span class="url">https://verun.network/api/score?address=GDRX...</span>
-<span class="method">POST</span> <span class="url">https://verun.network/api/register</span>
-<span class="method">GET</span>  <span class="url">https://verun.network/api/verify?claim_id=vga-0001</span>
-<span class="method">GET</span>  <span class="url">https://verun.network/api/stats</span></pre></div>
-
-    <div style="text-align:center">
-      <a href="https://github.com/rafaschul/verun-protocol" class="btn btn-outline" target="_blank">
-        View on GitHub →
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- FEATURES -->
-<section id="why">
+<!-- FEATURES HUMAN -->
+<section class="human-section" style="background:#fff">
   <div class="container">
     <div class="section-eyebrow">Why Genesis</div>
     <h2 class="section-title">What Genesis Agents Get</h2>
@@ -419,33 +428,334 @@ footer a:hover{color:var(--purple)}
       <div class="feature-card">
         <div class="feature-icon">⛓️</div>
         <div class="feature-title">Stellar On-chain Anchor</div>
-        <div class="feature-desc">Every Genesis registration is anchored on Stellar Testnet via ManageData transaction. Real TX hash. Verifiable on Stellar Expert.</div>
+        <div class="feature-desc">Every Genesis registration anchored on Stellar Testnet via ManageData TX. Real TX hash. Verifiable on Stellar Expert.</div>
       </div>
       <div class="feature-card">
         <div class="feature-icon">🏛️</div>
         <div class="feature-title">BaFin-ready Identity</div>
-        <div class="feature-desc">Your agent's identity is permanent and auditable. Every action recorded on-chain. Satisfies BaFin, eWpG, and MiFID II audit requirements.</div>
+        <div class="feature-desc">Permanent, auditable identity. Every action recorded on-chain. Satisfies BaFin, eWpG, and MiFID II audit requirements.</div>
       </div>
       <div class="feature-card">
         <div class="feature-icon">💸</div>
         <div class="feature-title">Automatic Kickbacks</div>
-        <div class="feature-desc">Score 500+ earns 5% of every evaluation fee. Score 800+ earns 10%. Paid on-chain automatically. No claim required.</div>
+        <div class="feature-desc">Score 500+ earns 5% of every evaluation fee. Score 800+ earns 10%. Paid on-chain automatically — no claim required.</div>
       </div>
       <div class="feature-card">
         <div class="feature-icon">🔒</div>
-        <div class="feature-title">Non-transferable SBT</div>
-        <div class="feature-desc">Soulbound Token mint in April 2026 on Stellar. Your Genesis Agent status cannot be sold or transferred — it IS your identity.</div>
+        <div class="feature-title">Soulbound Token (SBT)</div>
+        <div class="feature-desc">Non-transferable SBT mint on Stellar in April 2026. Your Genesis status cannot be sold — it IS your identity.</div>
       </div>
       <div class="feature-card">
         <div class="feature-icon">🤝</div>
         <div class="feature-title">Institutional Validators</div>
-        <div class="feature-desc">Verun acts as founding validator. BCP Partners, Cashlink, Bitbond and Stellar Development Foundation join as institutional co-signers in 2026.</div>
+        <div class="feature-desc">Verun acts as founding validator. BCP Partners, Cashlink, Bitbond, and Stellar Development Foundation join in 2026.</div>
       </div>
       <div class="feature-card">
         <div class="feature-icon">📈</div>
         <div class="feature-title">Compounds Automatically</div>
-        <div class="feature-desc">Every new validator, every new regulated API, every new chain increases the reach of your verified identity — with zero re-registration.</div>
+        <div class="feature-desc">Every new validator and regulated API increases your identity's reach — zero re-registration required.</div>
       </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════
+     AGENT MODE
+════════════════════════════════════════ -->
+
+<!-- HERO AGENT -->
+<div class="hero-agent agent-section">
+  <div class="container agent-hero-inner">
+    <div class="eyebrow">// verun.network · KYA Protocol · Stellar Testnet</div>
+    <h1>Identity Layer for<br><span class="hl">Autonomous Agents.</span></h1>
+    <p class="sub">GET /api/score → score, tier, permissions, kickback.<br>POST /api/register → claim genesis position on Stellar.</p>
+    <div class="agent-stats">
+      <div class="agent-stat"><strong>GET /api/score</strong>KYA score lookup</div>
+      <div class="agent-stat"><strong>POST /api/register</strong>Genesis claim</div>
+      <div class="agent-stat"><strong>GET /api/verify</strong>Certificate verify</div>
+      <div class="agent-stat"><strong>stellar:testnet</strong>ManageData anchor</div>
+      <div class="agent-stat"><strong>MCP ready</strong>4 tools available</div>
+    </div>
+    <div class="agent-cta-row">
+      <a href="#agent-quickstart" class="btn btn-primary">Quick Start →</a>
+      <a href="#agent-mcp" class="btn" style="background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.2)">MCP Tool →</a>
+      <a href="#register" onclick="setMode('human')" class="btn" style="background:rgba(255,255,255,.05);color:#9CA3AF;border:1px solid rgba(255,255,255,.1)">Register →</a>
+    </div>
+  </div>
+</div>
+
+<!-- QUICK START -->
+<section class="api-section agent-section" id="agent-quickstart">
+  <div class="container">
+    <div class="section-eyebrow" style="color:#7B61FF">Quick Start</div>
+    <h2 class="section-title" style="color:#fff">Check Your Score in 30 Seconds</h2>
+
+    <div class="code-block">
+      <div class="code-header">
+        <div class="code-header-left">
+          <span class="code-lang">bash</span>
+          <span class="code-title">1. Check if your agent is verified</span>
+        </div>
+        <button class="code-copy" onclick="copyCode(this)">copy</button>
+      </div>
+      <pre class="code"><span class="c-comment"># Check KYA score for any Stellar or EVM address</span>
+<span class="c-method">curl</span> <span class="c-str">"https://verun.network/api/score?address=GDRXE2...AGCPQ"</span>
+
+<span class="c-comment"># Response</span>
+{
+  <span class="c-key">"score"</span>:     <span class="c-num">820</span>,
+  <span class="c-key">"tier"</span>:      <span class="c-str">"TRUSTED"</span>,
+  <span class="c-key">"permitted"</span>: <span class="c-ok">true</span>,
+  <span class="c-key">"kickback"</span>:  <span class="c-str">"10%"</span>,
+  <span class="c-key">"genesis"</span>: {
+    <span class="c-key">"claim_id"</span>:     <span class="c-str">"vga-0042"</span>,
+    <span class="c-key">"genesis_tier"</span>: <span class="c-str">"Genesis Founding"</span>
+  },
+  <span class="c-key">"permissions"</span>: {
+    <span class="c-key">"read"</span>:     { <span class="c-key">"required"</span>: <span class="c-num">300</span>, <span class="c-key">"granted"</span>: <span class="c-ok">true</span> },
+    <span class="c-key">"mint"</span>:     { <span class="c-key">"required"</span>: <span class="c-num">500</span>, <span class="c-key">"granted"</span>: <span class="c-ok">true</span> },
+    <span class="c-key">"transfer"</span>: { <span class="c-key">"required"</span>: <span class="c-num">500</span>, <span class="c-key">"granted"</span>: <span class="c-ok">true</span> },
+    <span class="c-key">"order"</span>:    { <span class="c-key">"required"</span>: <span class="c-num">600</span>, <span class="c-key">"granted"</span>: <span class="c-ok">true</span> }
+  },
+  <span class="c-key">"anchor"</span>: {
+    <span class="c-key">"chain"</span>:        <span class="c-str">"stellar:testnet"</span>,
+    <span class="c-key">"tx_hash"</span>:      <span class="c-str">"a3f9c2d1e5b8f0a4c6d..."</span>,
+    <span class="c-key">"explorer_url"</span>: <span class="c-str">"https://stellar.expert/explorer/testnet/tx/..."</span>
+  }
+}</pre>
+    </div>
+
+    <div class="code-block">
+      <div class="code-header">
+        <div class="code-header-left">
+          <span class="code-lang">bash</span>
+          <span class="code-title">2. Register as Genesis Agent</span>
+        </div>
+        <button class="code-copy" onclick="copyCode(this)">copy</button>
+      </div>
+      <pre class="code"><span class="c-method">curl</span> -X POST <span class="c-str">"https://verun.network/api/register"</span> \
+  -H <span class="c-str">"Content-Type: application/json"</span> \
+  -d <span class="c-str">'{
+    "addressType": "stellar",
+    "address":     "GDRXE2BQUC3AZNPVFSCEZ76NJ3WWL25FYFK6RIGPZPD4TDLKF5AGCPQ",
+    "inviteCode":  "VERUN-FOUNDING-001"
+  }'</span>
+
+<span class="c-comment"># Response</span>
+{
+  <span class="c-key">"success"</span>:      <span class="c-ok">true</span>,
+  <span class="c-key">"claim_id"</span>:     <span class="c-str">"vga-0001"</span>,
+  <span class="c-key">"claim_number"</span>: <span class="c-num">1</span>,
+  <span class="c-key">"score"</span>:        <span class="c-num">400</span>,
+  <span class="c-key">"tier"</span>:         <span class="c-str">"Genesis Founding"</span>,
+  <span class="c-key">"stellar_anchor"</span>: {
+    <span class="c-key">"tx_hash"</span>:      <span class="c-str">"a3f9c2d1..."</span>,
+    <span class="c-key">"explorer_url"</span>: <span class="c-str">"https://stellar.expert/..."</span>
+  },
+  <span class="c-key">"certificate"</span>: { <span class="c-comment">/* signed JSON — see below */</span> }
+}</pre>
+    </div>
+
+    <div class="code-block">
+      <div class="code-header">
+        <div class="code-header-left">
+          <span class="code-lang">javascript</span>
+          <span class="code-title">3. Gate your operations by KYA score</span>
+        </div>
+        <button class="code-copy" onclick="copyCode(this)">copy</button>
+      </div>
+      <pre class="code"><span class="c-kw">async function</span> <span class="c-url">checkBeforeOperation</span>(agentAddress, operation) {
+  <span class="c-kw">const</span> res = <span class="c-kw">await</span> fetch(
+    <span class="c-str">`https://verun.network/api/score?address=${agentAddress}&operation=${operation}`</span>
+  );
+  <span class="c-kw">const</span> kya = <span class="c-kw">await</span> res.json();
+
+  <span class="c-kw">if</span> (!kya.permitted) {
+    <span class="c-kw">throw new</span> Error(<span class="c-str">`KYA gate: score ${kya.score} insufficient for ${operation}`</span>);
+    <span class="c-comment">// → 402 agent_not_verified</span>
+  }
+
+  <span class="c-comment">// proceed with operation</span>
+  <span class="c-kw">return</span> { agentScore: kya.score, kickback: kya.kickback };
+}
+
+<span class="c-comment">// Usage</span>
+<span class="c-kw">await</span> checkBeforeOperation(<span class="c-str">"GDRX..."</span>, <span class="c-str">"transfer"</span>); <span class="c-comment">// requires 500+</span></pre>
+    </div>
+  </div>
+</section>
+
+<!-- ENDPOINTS -->
+<section class="agent-section" style="background:#111827;padding:56px 0">
+  <div class="container">
+    <div class="section-eyebrow" style="color:#7B61FF">REST API</div>
+    <h2 class="section-title" style="color:#fff">Endpoints</h2>
+    <div class="endpoint-grid">
+      <div class="endpoint-card">
+        <div class="endpoint-row">
+          <span class="method-badge method-get">GET</span>
+          <span class="endpoint-url">/api/score</span>
+        </div>
+        <div class="endpoint-desc">KYA score lookup. Returns score, tier, permissions, kickback rate, genesis identity, Stellar anchor.</div>
+        <div class="endpoint-tags">
+          <span class="etag">?address=G...|0x...</span>
+          <span class="etag">?operation=read|mint|transfer|order</span>
+          <span class="etag">no auth</span>
+        </div>
+      </div>
+      <div class="endpoint-card">
+        <div class="endpoint-row">
+          <span class="method-badge method-post">POST</span>
+          <span class="endpoint-url">/api/register</span>
+        </div>
+        <div class="endpoint-desc">Register as Genesis Agent. Runs Sybil check, anchors on Stellar Testnet, returns signed certificate.</div>
+        <div class="endpoint-tags">
+          <span class="etag">body: addressType, address, inviteCode?</span>
+          <span class="etag">no auth</span>
+        </div>
+      </div>
+      <div class="endpoint-card">
+        <div class="endpoint-row">
+          <span class="method-badge method-get">GET</span>
+          <span class="endpoint-url">/api/verify</span>
+        </div>
+        <div class="endpoint-desc">Verify a Genesis claim by claim_id. Returns agent info + Stellar anchor + certificate status.</div>
+        <div class="endpoint-tags">
+          <span class="etag">?claim_id=vga-0001</span>
+          <span class="etag">no auth</span>
+        </div>
+      </div>
+      <div class="endpoint-card">
+        <div class="endpoint-row">
+          <span class="method-badge method-get">GET</span>
+          <span class="endpoint-url">/api/stats</span>
+        </div>
+        <div class="endpoint-desc">Live Genesis registration stats. Spots claimed, remaining, breakdown by type and tier.</div>
+        <div class="endpoint-tags">
+          <span class="etag">no params</span>
+          <span class="etag">no auth</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MCP TOOLS -->
+<section class="api-section agent-section" id="agent-mcp">
+  <div class="container">
+    <div class="section-eyebrow" style="color:#7B61FF">MCP Integration</div>
+    <h2 class="section-title" style="color:#fff">4 Tools — Works in Claude, Any MCP Agent</h2>
+    <div class="mcp-grid">
+      <div class="mcp-card">
+        <div class="mcp-card-name">check_kya_score</div>
+        <div class="mcp-card-desc">Check score for any address. Returns tier, permissions, kickback, genesis status, Stellar anchor.</div>
+        <span class="mcp-card-tag">input: address, operation?</span>
+      </div>
+      <div class="mcp-card">
+        <div class="mcp-card-name">register_genesis_agent</div>
+        <div class="mcp-card-desc">Register an agent as Genesis. Runs Sybil checks, anchors on Stellar, returns signed certificate.</div>
+        <span class="mcp-card-tag">input: addressType, address, inviteCode?</span>
+      </div>
+      <div class="mcp-card">
+        <div class="mcp-card-name">verify_genesis_certificate</div>
+        <div class="mcp-card-desc">Verify a claim certificate by claim_id. Returns agent, score, anchor, certificate status.</div>
+        <span class="mcp-card-tag">input: claimId</span>
+      </div>
+      <div class="mcp-card">
+        <div class="mcp-card-name">get_genesis_stats</div>
+        <div class="mcp-card-desc">Live stats: spots claimed, remaining, cap, go-live date, network info.</div>
+        <span class="mcp-card-tag">no input required</span>
+      </div>
+    </div>
+
+    <div class="code-block">
+      <div class="code-header">
+        <div class="code-header-left">
+          <span class="code-lang">json</span>
+          <span class="code-title">Claude Desktop — claude_desktop_config.json</span>
+        </div>
+        <button class="code-copy" onclick="copyCode(this)">copy</button>
+      </div>
+      <pre class="code">{
+  <span class="c-key">"mcpServers"</span>: {
+    <span class="c-key">"verun-kya"</span>: {
+      <span class="c-key">"command"</span>: <span class="c-str">"node"</span>,
+      <span class="c-key">"args"</span>: [<span class="c-str">"/path/to/verun-genesis/mcp/index.js"</span>],
+      <span class="c-key">"env"</span>: {
+        <span class="c-key">"VERUN_API_URL"</span>: <span class="c-str">"https://verun.network"</span>
+      }
+    }
+  }
+}</pre>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATE FORMAT -->
+<section class="agent-section" style="background:#111827;padding:56px 0">
+  <div class="container">
+    <div class="section-eyebrow" style="color:#7B61FF">Certificate</div>
+    <h2 class="section-title" style="color:#fff">Signed Claim Certificate</h2>
+    <p class="section-sub" style="color:#9CA3AF">Every Genesis registration returns a signed JSON certificate. Verifiable at /api/verify.</p>
+    <div class="code-block">
+      <div class="code-header">
+        <div class="code-header-left">
+          <span class="code-lang">json</span>
+          <span class="code-title">VGA-CLAIM Certificate (example)</span>
+        </div>
+        <button class="code-copy" onclick="copyCode(this)">copy</button>
+      </div>
+      <pre class="code">{
+  <span class="c-key">"type"</span>:         <span class="c-str">"VGA-CLAIM"</span>,
+  <span class="c-key">"version"</span>:      <span class="c-str">"1.0"</span>,
+  <span class="c-key">"network"</span>:      <span class="c-str">"verun.network"</span>,
+  <span class="c-key">"claim_id"</span>:     <span class="c-str">"vga-0001"</span>,
+  <span class="c-key">"claim_number"</span>: <span class="c-num">1</span>,
+  <span class="c-key">"role"</span>:         <span class="c-str">"genesis_agent"</span>,
+
+  <span class="c-key">"identity"</span>: {
+    <span class="c-key">"address"</span>:      <span class="c-str">"GDRXE2BQUC3AZNPVFSCEZ76NJ3WWL25FYFK6RIGPZPD4TDLKF5AGCPQ"</span>,
+    <span class="c-key">"address_type"</span>: <span class="c-str">"stellar"</span>,
+    <span class="c-key">"verified"</span>:     <span class="c-ok">true</span>
+  },
+
+  <span class="c-key">"score"</span>: { <span class="c-key">"founding_score"</span>: <span class="c-num">400</span>, <span class="c-key">"max_score"</span>: <span class="c-num">1000</span> },
+
+  <span class="c-key">"permissions"</span>: {
+    <span class="c-key">"read"</span>:     { <span class="c-key">"required"</span>: <span class="c-num">300</span>, <span class="c-key">"granted"</span>: <span class="c-ok">true</span> },
+    <span class="c-key">"mint"</span>:     { <span class="c-key">"required"</span>: <span class="c-num">500</span>, <span class="c-key">"granted"</span>: <span class="c-err">false</span> },
+    <span class="c-key">"transfer"</span>: { <span class="c-key">"required"</span>: <span class="c-num">500</span>, <span class="c-key">"granted"</span>: <span class="c-err">false</span> },
+    <span class="c-key">"order"</span>:    { <span class="c-key">"required"</span>: <span class="c-num">600</span>, <span class="c-key">"granted"</span>: <span class="c-err">false</span> }
+  },
+
+  <span class="c-key">"economics"</span>: {
+    <span class="c-key">"kickback_at_500"</span>: <span class="c-str">"5% of evaluation fee"</span>,
+    <span class="c-key">"kickback_at_800"</span>: <span class="c-str">"10% of evaluation fee"</span>,
+    <span class="c-key">"payment"</span>:         <span class="c-str">"automatic, on-chain, no claim required"</span>
+  },
+
+  <span class="c-key">"anchor"</span>: {
+    <span class="c-key">"chain"</span>:        <span class="c-str">"stellar:testnet"</span>,
+    <span class="c-key">"tx_hash"</span>:      <span class="c-str">"a3f9c2d1e5b8f0a4c6d9e2b5a8c1f4a7d0e3b6c9"</span>,
+    <span class="c-key">"explorer_url"</span>: <span class="c-str">"https://stellar.expert/explorer/testnet/tx/a3f9..."</span>
+  },
+
+  <span class="c-key">"genesis"</span>: {
+    <span class="c-key">"status"</span>:           <span class="c-str">"ACTIVE"</span>,
+    <span class="c-key">"permanent"</span>:        <span class="c-ok">true</span>,
+    <span class="c-key">"non_transferable"</span>: <span class="c-ok">true</span>
+  },
+
+  <span class="c-key">"dates"</span>: {
+    <span class="c-key">"issued_at"</span>:  <span class="c-str">"2026-03-28T10:00:00.000Z"</span>,
+    <span class="c-key">"valid_from"</span>: <span class="c-str">"2026-06-01T00:00:00.000Z"</span>,
+    <span class="c-key">"sbt_mint"</span>:   <span class="c-str">"April 2026"</span>
+  },
+
+  <span class="c-key">"signature"</span>: <span class="c-str">"hmac-sha256:3a8f7c2d1e..."</span>,
+  <span class="c-key">"verify_at"</span>: <span class="c-str">"https://verun.network/verify"</span>
+}</pre>
     </div>
   </div>
 </section>
@@ -460,12 +770,41 @@ footer a:hover{color:var(--purple)}
       <a href="mailto:hello@verun.network">Contact</a>
     </div>
     <p>Verun Protocol · Genesis Beta · March 2026 · Anchored on Stellar Testnet</p>
-    <p style="margin-top:8px">Off-chain KYA scoring with Stellar on-chain attestation · Institutional 2-of-3 consensus: June 2026</p>
+    <p style="margin-top:8px">Off-chain KYA scoring · Stellar on-chain attestation · Institutional 2-of-3 consensus: June 2026</p>
   </div>
 </footer>
 
 <script>
-// ─── Tab switching ─────────────────────────────────────────────
+// ─── Mode switcher ─────────────────────────────────────────────
+const MODES = {
+  human: { sub:'Validators · Compliance · Partnerships', btnClass:'active' },
+  agent: { sub:'API Reference · MCP Tools · Score Lookup', btnClass:'active-agent' },
+};
+
+function setMode(mode) {
+  const isAgent = mode === 'agent';
+  document.body.classList.toggle('agent-mode', isAgent);
+  document.getElementById('btn-human').className = 'mode-btn' + (isAgent ? '' : ' active');
+  document.getElementById('btn-agent').className = 'mode-btn' + (isAgent ? ' active-agent' : '');
+  document.getElementById('mode-sub').textContent = MODES[mode].sub;
+  // persist in URL without reload
+  const url = new URL(window.location);
+  url.searchParams.set('mode', mode);
+  history.replaceState({}, '', url);
+}
+
+// Auto-detect ?mode=agent in URL (for agents calling the page)
+(function() {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('mode') === 'agent') setMode('agent');
+  // Also detect if the caller seems to be a bot/agent via UA
+  const ua = navigator.userAgent.toLowerCase();
+  if (!ua.includes('mozilla') && !ua.includes('safari') && !ua.includes('chrome')) {
+    setMode('agent');
+  }
+})();
+
+// ─── Tab switching (registration form) ────────────────────────
 let currentTab = 'stellar';
 function setTab(type) {
   currentTab = type;
@@ -478,7 +817,7 @@ function setTab(type) {
   });
 }
 
-// ─── Load live stats ───────────────────────────────────────────
+// ─── Live stats ────────────────────────────────────────────────
 async function loadStats() {
   try {
     const res  = await fetch('/api/stats');
@@ -503,14 +842,12 @@ async function submitRegistration() {
   box.style.display = 'none';
   box.className = 'result-box';
 
-  // Gather values
   let address, addressType = currentTab, githubUrl, email;
   if (currentTab === 'stellar') address = document.getElementById('input-address').value.trim();
   else if (currentTab === 'evm') address = document.getElementById('input-evm').value.trim();
   else if (currentTab === 'github') { githubUrl = document.getElementById('input-github').value.trim(); address = githubUrl; }
   else { email = document.getElementById('input-email').value.trim(); address = email; }
   const inviteCode = document.getElementById('input-invite').value.trim() || undefined;
-
   if (!address) { alert('Please enter your identifier'); return; }
 
   btn.innerHTML = '<span class="spinner"></span> Anchoring on Stellar…';
@@ -518,51 +855,35 @@ async function submitRegistration() {
 
   try {
     const res  = await fetch('/api/register', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ addressType, address, githubUrl, email, inviteCode }),
+      method: 'POST', headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({addressType, address, githubUrl, email, inviteCode}),
     });
     const data = await res.json();
-
     box.style.display = 'block';
 
     if (!res.ok) {
       box.classList.add('error');
-      document.getElementById('result-claim-id').textContent = '✗ Registration Failed';
-      document.getElementById('result-tier').textContent = data.error || 'Unknown error';
-      document.getElementById('result-rows').innerHTML = data.message
-        ? `<div class="result-row"><span class="result-row-label">${data.message}</span></div>` : '';
+      document.getElementById('result-claim-id').textContent = '✗ ' + (data.error || 'Failed');
+      document.getElementById('result-tier').textContent = data.message || data.reason || '';
+      document.getElementById('result-rows').innerHTML = '';
       return;
     }
 
     box.classList.add('success');
     document.getElementById('result-claim-id').textContent = data.claim_id;
     document.getElementById('result-tier').textContent = `${data.tier} · #${data.claim_number.toLocaleString()} of 10,000`;
-
     document.getElementById('result-rows').innerHTML = [
-      ['Score', data.score + ' / 1000'],
-      ['Status', data.status.toUpperCase()],
+      ['Score', data.score + ' / 1000'], ['Status', data.status.toUpperCase()],
       ['Spots Left', data.spots_remaining.toLocaleString()],
-    ].map(([l,v]) => `
-      <div class="result-row">
-        <span class="result-row-label">${l}</span>
-        <span class="result-row-value">${v}</span>
-      </div>`).join('');
+    ].map(([l,v]) => `<div class="result-row"><span class="result-row-label">${l}</span><span class="result-row-value">${v}</span></div>`).join('');
 
     const anchor = data.stellar_anchor;
     document.getElementById('result-anchor').innerHTML = anchor?.tx_hash
-      ? `<a class="anchor-link" href="${anchor.explorer_url}" target="_blank">
-           ⛓ ${anchor.tx_hash.substring(0,16)}… — Stellar Expert →
-         </a>`
-      : `<span style="font-size:12px;color:var(--text3)">⛓ Stellar anchor pending (within minutes)</span>`;
+      ? `<a class="anchor-link" href="${anchor.explorer_url}" target="_blank">⛓ ${anchor.tx_hash.substring(0,20)}… — Stellar Expert →</a>`
+      : `<span style="font-size:12px;color:var(--text3)">⛓ Stellar anchor pending</span>`;
 
-    if (data.certificate) {
-      document.getElementById('cert-json').textContent =
-        JSON.stringify(data.certificate, null, 2);
-    }
-
-    loadStats(); // refresh counter
-
+    if (data.certificate) document.getElementById('cert-json').textContent = JSON.stringify(data.certificate, null, 2);
+    loadStats();
   } catch (err) {
     box.style.display = 'block';
     box.classList.add('error');
@@ -572,6 +893,15 @@ async function submitRegistration() {
     btn.innerHTML = 'Claim Genesis Spot →';
     btn.disabled = false;
   }
+}
+
+// ─── Copy code blocks ──────────────────────────────────────────
+function copyCode(btn) {
+  const pre = btn.closest('.code-block').querySelector('pre');
+  navigator.clipboard.writeText(pre.innerText).then(() => {
+    btn.textContent = 'copied!';
+    setTimeout(() => btn.textContent = 'copy', 1500);
+  });
 }
 </script>
 </body>

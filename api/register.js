@@ -90,7 +90,7 @@ export default async function handler(req, res) {
     const claimId     = `vga-${String(claimNumber).padStart(4, '0')}`;
 
     // ── 7. Insert agent into DB ──────────────────────────────
-    if (inviteUsed) await markInviteCodeUsed(supabase, inviteCode, identifier);
+    if (inviteUsed) await markInviteCodeUsed(supabase, inviteCode);
 
     const agent = await insertAgent(supabase, {
       claim_id:     claimId,

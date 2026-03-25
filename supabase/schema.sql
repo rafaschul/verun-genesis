@@ -129,6 +129,78 @@ create trigger trg_claims_set_claim_id
   before insert on public.claims
   for each row execute function public.set_claim_id();
 
+-- ===== INVITE-ONLY ENFORCEMENT (Kite, 25.03.2026) =====
+
+-- System config (invite_only_until threshold)
+create table if not exists public.system_config (
+  key   text primary key,
+  value text not null
+);
+
+insert into public.system_config (key, value)
+values ('invite_only_until', '1000')
+on conflict (key) do nothing;
+
+-- Add invite_code column to claims (for audit trail)
+alter table public.claims
+  add column if not exists invite_code text;
+
+-- Helper: validate + consume one invite code use
+create or replace function public.consume_invite_code(p_code text)
+returns boolean
+language plpgsql
+as $$
+declare
+  v_ok boolean := false;
+begin
+  update public.invite_codes
+  set used_count = used_count + 1
+  where code = p_code
+    and active = true
+    and (expires_at is null or expires_at > now())
+    and used_count < max_uses
+  returning true into v_ok;
+  return coalesce(v_ok, false);
+end;
+$$;
+
+-- Trigger: enforce invite-only for claim_seq <= invite_only_until
+create or replace function public.enforce_invite_only_claims()
+returns trigger
+language plpgsql
+as $$
+declare
+  v_limit    int;
+  v_consumed boolean;
+begin
+  select value::int into v_limit
+  from public.system_config
+  where key = 'invite_only_until';
+
+  if v_limit is null then
+    v_limit := 1000;
+  end if;
+
+  if new.claim_seq <= v_limit then
+    if new.invite_code is null then
+      raise exception 'Invite code required for early genesis claims (<= %)', v_limit;
+    end if;
+
+    v_consumed := public.consume_invite_code(new.invite_code);
+    if not v_consumed then
+      raise exception 'Invalid or exhausted invite code';
+    end if;
+  end if;
+
+  return new;
+end;
+$$;
+
+drop trigger if exists trg_claims_invite_only on public.claims;
+create trigger trg_claims_invite_only
+  before insert on public.claims
+  for each row execute function public.enforce_invite_only_claims();
+
 -- ===== Seed: first invite codes =====
 insert into public.invite_codes (code, created_by, max_uses)
 values
