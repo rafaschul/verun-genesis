@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "verun-genesis",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "3030", "--directory", "public"],
+      "port": 3030
+    }
+  ]
+}
