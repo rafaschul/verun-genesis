@@ -95,6 +95,20 @@ section{padding:72px 0}
   border-radius:4px;transition:width .8s ease}
 .spots-left{font-size:12px;color:var(--text3);margin-top:8px}
 
+/* ─── GLOBE ─── */
+.globe-wrap{position:relative;max-width:600px;margin:0 auto 24px;border-radius:16px;
+  overflow:hidden;background:linear-gradient(160deg,#0D0D2B 0%,#130d2e 60%,#0a1a2e 100%);
+  border:1px solid rgba(123,97,255,.25);box-shadow:0 0 40px rgba(123,97,255,.08)}
+.globe-wrap canvas{display:block;width:100%;height:auto}
+.globe-label{position:absolute;top:14px;left:16px;font-family:var(--mono);
+  font-size:10px;color:rgba(123,97,255,.65);letter-spacing:.12em;text-transform:uppercase}
+.globe-live{position:absolute;top:14px;right:16px;display:flex;align-items:center;gap:5px;
+  font-family:var(--mono);font-size:10px;color:#00B48A;letter-spacing:.08em;text-transform:uppercase}
+.globe-live-dot{width:5px;height:5px;border-radius:50%;background:#00B48A;animation:pulse 2s infinite}
+.globe-count{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);
+  font-family:var(--mono);font-size:11px;color:rgba(255,255,255,.35);white-space:nowrap;
+  letter-spacing:.06em}
+
 /* ─── HERO AGENT ─── */
 .hero-agent{padding:48px 24px 40px;background:#0D0D2B;color:#fff;text-align:center}
 .hero-agent .eyebrow{font-family:var(--mono);font-size:11px;color:#7B61FF;
@@ -278,6 +292,12 @@ footer a:hover{color:var(--purple)}
       <div class="hero-stat"><strong>Up to 10%</strong> Fee Kickback</div>
       <div class="hero-stat"><strong>Stellar</strong> On-chain Anchor</div>
       <div class="hero-stat"><strong>June 2026</strong> Go-Live</div>
+    </div>
+    <div class="globe-wrap">
+      <span class="globe-label">Agent Network</span>
+      <span class="globe-live"><span class="globe-live-dot"></span>Live</span>
+      <canvas id="globe-canvas" width="600" height="260"></canvas>
+      <span class="globe-count" id="globe-agent-count">0 genesis agents registered</span>
     </div>
     <div class="counter-bar">
       <div class="counter-row">
@@ -903,6 +923,209 @@ function copyCode(btn) {
     setTimeout(() => btn.textContent = 'copy', 1500);
   });
 }
+
+// ─── Globe Animation ────────────────────────────────────────────
+(function initGlobe() {
+  const canvas = document.getElementById('globe-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+
+  const DPR = Math.min(window.devicePixelRatio || 1, 2);
+  const W = 600, H = 260;
+  canvas.width  = W * DPR;
+  canvas.height = H * DPR;
+  canvas.style.width  = W + 'px';
+  canvas.style.height = H + 'px';
+  ctx.scale(DPR, DPR);
+
+  const cx = W / 2, cy = H / 2 + 10;
+  const R  = 108;
+
+  // Genesis agent server hubs [lat, lon]
+  const AGENTS = [
+    [50.1,   8.7],   // Frankfurt 🇩🇪
+    [51.5,  -0.1],   // London    🇬🇧
+    [47.4,   8.5],   // Zurich    🇨🇭
+    [48.9,   2.3],   // Paris     🇫🇷
+    [52.4,   4.9],   // Amsterdam 🇳🇱
+    [52.5,  13.4],   // Berlin    🇩🇪
+    [59.9,  10.7],   // Oslo      🇳🇴
+    [40.7, -74.0],   // New York  🇺🇸
+    [37.8,-122.4],   // San Francisco 🇺🇸
+    [43.7, -79.4],   // Toronto   🇨🇦
+    [ 1.3, 103.8],   // Singapore 🇸🇬
+    [35.7, 139.7],   // Tokyo     🇯🇵
+    [22.3, 114.2],   // Hong Kong 🇭🇰
+    [25.2,  55.3],   // Dubai     🇦🇪
+    [19.1,  72.9],   // Mumbai    🇮🇳
+    [-33.9,151.2],   // Sydney    🇦🇺
+    [55.7,  37.6],   // Moscow    🇷🇺
+    [-23.5, -46.6],  // São Paulo 🇧🇷
+  ];
+
+  // Arc connections between key hubs [idxA, idxB]
+  const ARCS = [[0,1],[0,3],[0,4],[0,6],[0,9],[1,4],[9,10],[9,11],[10,11],[0,13],[13,14]];
+
+  let rot = 0;
+  const arcProgress = ARCS.map(() => Math.random()); // stagger arcs
+
+  function toXYZ(lat, lon, rotation) {
+    const phi   = (90 - lat)  * Math.PI / 180;
+    const theta = (lon + rotation) * Math.PI / 180;
+    return {
+      x:  R * Math.sin(phi) * Math.cos(theta),
+      y: -R * Math.cos(phi),
+      z:  R * Math.sin(phi) * Math.sin(theta),
+    };
+  }
+
+  function proj(x, y, z) {
+    return { px: cx + x, py: cy + y, vis: z >= -10 };
+  }
+
+  function drawFrame(rotation) {
+    ctx.clearRect(0, 0, W, H);
+
+    // Dark sphere base
+    const sphereGrad = ctx.createRadialGradient(cx - 30, cy - 30, 0, cx, cy, R);
+    sphereGrad.addColorStop(0, 'rgba(40,28,80,.55)');
+    sphereGrad.addColorStop(1, 'rgba(13,13,43,.85)');
+    ctx.beginPath();
+    ctx.arc(cx, cy, R, 0, Math.PI * 2);
+    ctx.fillStyle = sphereGrad;
+    ctx.fill();
+
+    // Latitude lines
+    for (let lat = -75; lat <= 75; lat += 15) {
+      ctx.beginPath();
+      let started = false;
+      for (let lon = -180; lon <= 182; lon += 2) {
+        const {x, y, z} = toXYZ(lat, lon, rotation);
+        const {px, py, vis} = proj(x, y, z);
+        if (vis) {
+          started ? ctx.lineTo(px, py) : ctx.moveTo(px, py);
+          started = true;
+        } else { started = false; }
+      }
+      ctx.strokeStyle = 'rgba(123,97,255,.14)';
+      ctx.lineWidth = .6;
+      ctx.stroke();
+    }
+
+    // Longitude lines
+    for (let lon = -180; lon < 180; lon += 15) {
+      ctx.beginPath();
+      let started = false;
+      for (let lat = -90; lat <= 90; lat += 2) {
+        const {x, y, z} = toXYZ(lat, lon, rotation);
+        const {px, py, vis} = proj(x, y, z);
+        if (vis) {
+          started ? ctx.lineTo(px, py) : ctx.moveTo(px, py);
+          started = true;
+        } else { started = false; }
+      }
+      ctx.strokeStyle = 'rgba(123,97,255,.10)';
+      ctx.lineWidth = .6;
+      ctx.stroke();
+    }
+
+    // Arc connections (animated)
+    const t = Date.now() / 1000;
+    ARCS.forEach(([a, b], i) => {
+      const pA = toXYZ(AGENTS[a][0], AGENTS[a][1], rotation);
+      const pB = toXYZ(AGENTS[b][0], AGENTS[b][1], rotation);
+      if (!proj(pA.x,pA.y,pA.z).vis || !proj(pB.x,pB.y,pB.z).vis) return;
+
+      // Midpoint lifted toward viewer
+      const mx = (pA.x + pB.x) * .5;
+      const my = (pA.y + pB.y) * .5;
+      const mz = (pA.z + pB.z) * .5;
+      const lift = 1.25;
+
+      const pAp = proj(pA.x, pA.y, pA.z);
+      const pMp = proj(mx * lift, my * lift, mz * lift);
+      const pBp = proj(pB.x, pB.y, pB.z);
+
+      const progress = ((t * 0.4 + arcProgress[i] * 3) % 3);
+      if (progress > 1) return; // only draw during active phase
+      const head = Math.min(progress, 1);
+
+      // Sample arc points and draw up to head
+      const steps = 40;
+      ctx.beginPath();
+      let started = false;
+      for (let s = 0; s <= steps * head; s++) {
+        const q = s / steps;
+        // Quadratic bezier
+        const bx = (1-q)*(1-q)*pAp.px + 2*(1-q)*q*pMp.px + q*q*pBp.px;
+        const by = (1-q)*(1-q)*pAp.py + 2*(1-q)*q*pMp.py + q*q*pBp.py;
+        started ? ctx.lineTo(bx, by) : ctx.moveTo(bx, by);
+        started = true;
+      }
+      ctx.strokeStyle = `rgba(0,180,138,${0.25 + head * .3})`;
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    });
+
+    // Agent dots
+    AGENTS.forEach(([lat, lon], i) => {
+      const {x, y, z} = toXYZ(lat, lon, rotation);
+      const {px, py, vis} = proj(x, y, z);
+      if (!vis) return;
+
+      const depth = (z / R + 1) / 2;
+      const alpha = .25 + depth * .75;
+      const pulse = .5 + .5 * Math.sin(t * 1.8 + i * .9);
+
+      // Outer glow
+      const gr = 10 + pulse * 5;
+      const glow = ctx.createRadialGradient(px, py, 0, px, py, gr);
+      glow.addColorStop(0, `rgba(123,97,255,${alpha * .45})`);
+      glow.addColorStop(1, 'rgba(123,97,255,0)');
+      ctx.beginPath();
+      ctx.arc(px, py, gr, 0, Math.PI * 2);
+      ctx.fillStyle = glow;
+      ctx.fill();
+
+      // Ring
+      ctx.beginPath();
+      ctx.arc(px, py, 3 + pulse * 1.5, 0, Math.PI * 2);
+      ctx.strokeStyle = `rgba(123,97,255,${alpha * .6})`;
+      ctx.lineWidth = .8;
+      ctx.stroke();
+
+      // Core
+      ctx.beginPath();
+      ctx.arc(px, py, 2, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(123,97,255,${alpha})`;
+      ctx.fill();
+
+      // Bright center
+      ctx.beginPath();
+      ctx.arc(px, py, .8, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(220,210,255,${alpha})`;
+      ctx.fill();
+    });
+
+    // Edge glow
+    const edgeGlow = ctx.createRadialGradient(cx, cy, R * .85, cx, cy, R * 1.08);
+    edgeGlow.addColorStop(0, 'rgba(123,97,255,0)');
+    edgeGlow.addColorStop(.6, 'rgba(123,97,255,.06)');
+    edgeGlow.addColorStop(1, 'rgba(123,97,255,.18)');
+    ctx.beginPath();
+    ctx.arc(cx, cy, R * 1.08, 0, Math.PI * 2);
+    ctx.fillStyle = edgeGlow;
+    ctx.fill();
+  }
+
+  function animate() {
+    rot += 0.12;
+    drawFrame(rot);
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+})();
 </script>
 </body>
 </html>
