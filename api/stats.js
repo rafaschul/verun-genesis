@@ -11,26 +11,18 @@ export default async function handler(req, res) {
     const total    = await getTotalRegistered(supabase);
 
     // Breakdown by address type
-    const { data: breakdown } = await supabase
-      .from('agents')
-      .select('address_type')
-      .then(({ data }) => ({
-        data: (data || []).reduce((acc, r) => {
-          acc[r.address_type] = (acc[r.address_type] || 0) + 1;
-          return acc;
-        }, {}),
-      }));
+    const { data: rawAgents } = await supabase.from('agents').select('address_type, score');
+    const agents = rawAgents || [];
 
-    // Breakdown by tier
-    const { data: tierData } = await supabase
-      .from('agents')
-      .select('score')
-      .then(({ data }) => ({
-        data: {
-          verified:    (data || []).filter(r => r.score >= 350).length,
-          provisional: (data || []).filter(r => r.score < 350).length,
-        },
-      }));
+    const breakdown = agents.reduce((acc, r) => {
+      acc[r.address_type] = (acc[r.address_type] || 0) + 1;
+      return acc;
+    }, {});
+
+    const tierData = {
+      verified:    agents.filter(r => r.score >= 350).length,
+      provisional: agents.filter(r => r.score < 350).length,
+    };
 
     return res.status(200).json({
       genesis: {
@@ -40,7 +32,7 @@ export default async function handler(req, res) {
         percent_claimed:  Math.round((total / CONFIG.GENESIS_CAP) * 100),
       },
       breakdown,
-      tiers: tierData,
+      tiers:    tierData,
       network: {
         chain:    'stellar:testnet',
         phase:    'Genesis Beta',
