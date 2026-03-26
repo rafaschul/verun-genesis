@@ -61,20 +61,17 @@ section{padding:72px 0}
 .pill-dark{background:#F3F4F6;color:var(--text)}
 
 /* ─── HERO ─── */
-.hero{padding:80px 24px 60px;text-align:center;background:linear-gradient(180deg,#F0EEFF 0%,var(--bg) 100%)}
+.hero{padding:60px 0 40px;background:linear-gradient(180deg,#F0EEFF 0%,var(--bg) 100%)}
+.hero-split{display:flex;align-items:center;gap:40px}
+.hero-text{flex:0 0 420px;text-align:left}
+.hero-globe-col{flex:1;min-width:0}
+@media(max-width:860px){.hero-split{flex-direction:column}.hero-text{flex:none;width:100%;text-align:center}}
 .hero-eyebrow{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
   color:var(--purple);margin-bottom:16px}
-.hero h1{font-size:clamp(36px,6vw,64px);font-weight:800;line-height:1.1;margin-bottom:20px}
+.hero h1{font-size:clamp(32px,5vw,56px);font-weight:800;line-height:1.1;margin-bottom:20px}
 .hero h1 span{color:var(--purple)}
-.hero-sub{font-size:18px;color:var(--text2);max-width:600px;margin:0 auto 24px}
-.hero-disclaimer{font-size:12px;color:var(--text3);max-width:540px;margin:0 auto 32px;
-  font-family:var(--mono);background:rgba(123,97,255,.06);border:1px solid rgba(123,97,255,.12);
-  border-radius:8px;padding:8px 14px}
-.hero-cta-row{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-bottom:40px}
-.hero-stats{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin-bottom:36px}
-.hero-stat{background:#fff;border:1px solid var(--border);border-radius:8px;
-  padding:8px 16px;font-size:13px;color:var(--text2)}
-.hero-stat strong{color:var(--text);display:block;font-size:15px}
+.hero-sub{font-size:17px;color:var(--text2);margin-bottom:28px;line-height:1.6}
+.hero-cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:32px}
 /* ─── AGENTS SECTION ─── */
 .agents-section{background:#0D0D2B;padding:72px 0}
 .agents-section .section-eyebrow{color:#7B61FF}
@@ -98,7 +95,7 @@ section{padding:72px 0}
 .faq-q{font-weight:700;font-size:15px;margin-bottom:8px}
 .faq-a{font-size:14px;color:var(--text2);line-height:1.7}
 .counter-bar{background:#fff;border:1px solid var(--border);border-radius:12px;
-  padding:20px 28px;max-width:600px;margin:0 auto 40px;text-align:left}
+  padding:18px 22px;margin-bottom:0;text-align:left}
 .counter-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
 .counter-label{font-size:13px;color:var(--text2)}
 .counter-nums{font-family:var(--mono);font-size:18px;font-weight:600;color:var(--text)}
@@ -108,35 +105,13 @@ section{padding:72px 0}
 .spots-left{font-size:12px;color:var(--text3);margin-top:8px}
 
 /* ─── GLOBE ─── */
-.globe-wrap{position:relative;max-width:880px;margin:0 auto 24px;border-radius:16px;
-  overflow:hidden;background:linear-gradient(160deg,#F8F7FF 0%,#EEF0FF 60%,#F0FAFA 100%);
+.globe-wrap{position:relative;border-radius:16px;overflow:hidden;
+  background:linear-gradient(160deg,#F8F7FF 0%,#EEF0FF 60%,#F0FAFA 100%);
   border:1px solid rgba(123,97,255,.18);box-shadow:0 4px 24px rgba(123,97,255,.10),0 1px 4px rgba(0,0,0,.04)}
-.globe-top-bar{position:absolute;top:0;left:0;right:0;display:flex;align-items:center;
-  justify-content:space-between;padding:10px 16px;z-index:2;pointer-events:none}
-.globe-inner{display:flex;align-items:stretch}
-.globe-panel{width:150px;flex-shrink:0;padding:44px 13px 14px;display:flex;flex-direction:column;
-  gap:6px;font-family:var(--mono);font-size:8.5px;color:var(--text2)}
-.globe-panel-left{border-right:1px solid rgba(123,97,255,.1)}
-.globe-panel-right{border-left:1px solid rgba(123,97,255,.1)}
-.gp-title{font-size:7px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
-  color:rgba(123,97,255,.7);margin-bottom:2px}
-.gp-sub{font-size:8.5px;font-weight:600;color:var(--text);margin:2px 0 1px}
-.gp-divider{height:1px;background:rgba(123,97,255,.09);margin:3px 0}
-.gp-row{display:flex;justify-content:space-between;align-items:center;padding:1px 0;line-height:1.65}
-.gp-label{color:var(--text3);font-size:8px}
-.gp-val{color:var(--text);font-weight:600;font-size:8px}
-.gp-badge{display:inline-block;padding:1px 5px;border-radius:3px;font-size:7px;font-weight:700;letter-spacing:.05em}
-.gp-green{background:rgba(0,180,138,.12);color:#00B48A}
-.gp-blue{background:rgba(0,82,255,.1);color:#0052FF}
-.gp-purple{background:rgba(123,97,255,.12);color:#7B61FF}
-.gp-orbit{background:rgba(123,97,255,.1);color:#7B61FF}
-.gp-dot{display:inline-block;width:6px;height:6px;border-radius:50%;flex-shrink:0}
-.gp-dot-purple{background:#7B61FF}
-.gp-dot-green{background:#00B48A}
-.globe-canvas-area{flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;position:relative}
-.globe-canvas-area canvas{display:block;width:100%;height:auto}
-.globe-count{font-family:var(--mono);font-size:10px;color:rgba(13,13,43,.32);white-space:nowrap;
-  letter-spacing:.06em;margin-bottom:10px;margin-top:3px}
+.globe-top-bar{display:flex;align-items:center;justify-content:space-between;
+  padding:10px 14px;border-bottom:1px solid rgba(123,97,255,.08)}
+.globe-count{font-family:var(--mono);font-size:10px;color:rgba(13,13,43,.32);
+  letter-spacing:.06em;padding:6px 14px 10px;text-align:center;display:block}
 .globe-legend{display:flex;align-items:center;gap:14px}
 .globe-legend-item{display:flex;align-items:center;gap:5px;font-family:var(--mono);
   font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase}
@@ -309,92 +284,39 @@ footer a:hover{color:var(--purple)}
 
 <!-- HERO -->
 <section class="hero" id="home">
-  <div class="container">
-    <div class="hero-eyebrow">Verun Protocol · Genesis Registration · March 2026</div>
-    <h1>Know Your Agent.<br><span>On Stellar.</span></h1>
-    <p class="hero-sub">The only compliance-ready identity layer for AI agents in regulated European finance. Stellar on-chain anchor · BaFin-compatible · 10,000 founding positions — permanently non-transferable.</p>
-    <p class="hero-disclaimer">Genesis Beta: off-chain KYA scoring, anchored on Stellar Testnet. Institutional 2-of-3 validator consensus goes live June 2026.</p>
-    <div class="hero-cta-row">
-      <a href="#register" class="btn btn-primary">Claim Genesis Spot →</a>
-      <a href="#agents" class="btn btn-outline">For Agents · API Docs</a>
-    </div>
-    <div class="hero-stats">
-      <div class="hero-stat"><strong>10,000</strong> Genesis Spots</div>
-      <div class="hero-stat"><strong>Score 350</strong> Founding Bonus</div>
-      <div class="hero-stat"><strong>Up to 10%</strong> Fee Kickback</div>
-      <div class="hero-stat"><strong>Stellar</strong> On-chain Anchor</div>
-      <div class="hero-stat"><strong>June 2026</strong> Go-Live</div>
-    </div>
-    <div class="globe-wrap">
-      <div class="globe-top-bar">
-        <div class="globe-legend">
-          <span class="globe-legend-item legend-agent"><span class="globe-legend-dot"></span>Agents</span>
-          <span class="globe-legend-item legend-validator"><span class="globe-legend-diamond"></span>Validators</span>
-        </div>
-        <span class="globe-live"><span class="globe-live-dot"></span>Live</span>
+  <div class="container hero-split">
+    <!-- LEFT: text -->
+    <div class="hero-text">
+      <div class="hero-eyebrow">Verun Protocol · Genesis Registration · March 2026</div>
+      <h1>Know Your Agent.<br><span>On Stellar.</span></h1>
+      <p class="hero-sub">The only compliance-ready identity layer for AI agents in regulated European finance. BaFin-compatible · Stellar on-chain anchor · 10,000 founding positions.</p>
+      <div class="hero-cta-row">
+        <a href="#register" class="btn btn-primary">Claim Genesis Spot →</a>
+        <a href="#agents" class="btn btn-outline">For Agents · API Docs</a>
       </div>
-      <div class="globe-inner">
-        <!-- LEFT PANEL -->
-        <div class="globe-panel globe-panel-left">
-          <div class="gp-title">Genesis Network</div>
-          <div class="gp-row"><span class="gp-label">Agents</span><span class="gp-val">15</span></div>
-          <div class="gp-row"><span class="gp-label">Validators</span><span class="gp-val">6</span></div>
-          <div class="gp-row"><span class="gp-label">Network</span><span class="gp-val">Stellar</span></div>
-          <div class="gp-row"><span class="gp-label">Phase</span><span class="gp-val">Genesis</span></div>
-          <div class="gp-divider"></div>
-          <div class="gp-title">Trust Layer</div>
-          <div class="gp-row"><span class="gp-label">350+</span><span class="gp-badge gp-green">Read</span></div>
-          <div class="gp-row"><span class="gp-label">500+</span><span class="gp-badge gp-blue">Mint</span></div>
-          <div class="gp-row"><span class="gp-label">800+</span><span class="gp-badge gp-purple">Elite</span></div>
-          <div class="gp-divider"></div>
-          <div class="gp-title">Earth Nodes</div>
-          <div class="gp-row"><span class="gp-dot gp-dot-purple"></span>&nbsp;<span class="gp-label">15 Agents</span></div>
-          <div class="gp-row"><span class="gp-dot gp-dot-green"></span>&nbsp;<span class="gp-label">6 Validators</span></div>
-          <div class="gp-divider"></div>
-          <div class="gp-title">Stellar Testnet</div>
-          <div class="gp-row"><span class="gp-label">Chain</span><span class="gp-val">XLM</span></div>
-          <div class="gp-row"><span class="gp-label">Anchor</span><span class="gp-badge gp-green">Live</span></div>
+      <div class="counter-bar">
+        <div class="counter-row">
+          <span class="counter-label">Genesis spots claimed</span>
+          <span class="counter-nums"><span id="claimed-count">—</span> / 10,000</span>
         </div>
-        <!-- CANVAS -->
-        <div class="globe-canvas-area">
-          <canvas id="globe-canvas" width="500" height="340"></canvas>
-          <span class="globe-count" id="globe-agent-count">0 genesis agents registered</span>
-        </div>
-        <!-- RIGHT PANEL -->
-        <div class="globe-panel globe-panel-right">
-          <div class="gp-title">Orbital Nodes</div>
-          <div class="gp-row"><span class="gp-label">Status</span><span class="gp-badge gp-green">Active</span></div>
-          <div class="gp-divider"></div>
-          <div class="gp-sub">☽ Moon Node</div>
-          <div class="gp-row"><span class="gp-label">Agents</span><span class="gp-val">2</span></div>
-          <div class="gp-row"><span class="gp-label">Status</span><span class="gp-badge gp-green">Online</span></div>
-          <div class="gp-row"><span class="gp-label">Dist.</span><span class="gp-val">384k km</span></div>
-          <div class="gp-divider"></div>
-          <div class="gp-sub">🛰 ISS Node</div>
-          <div class="gp-row"><span class="gp-label">Agent</span><span class="gp-val">vga-ISS</span></div>
-          <div class="gp-row"><span class="gp-label">Alt.</span><span class="gp-val">408 km</span></div>
-          <div class="gp-row"><span class="gp-label">Inc.</span><span class="gp-val">51.6°</span></div>
-          <div class="gp-divider"></div>
-          <div class="gp-sub">◈ Satellites</div>
-          <div class="gp-row"><span class="gp-label">SAT-A</span><span class="gp-badge gp-orbit">Orbit</span></div>
-          <div class="gp-row"><span class="gp-label">SAT-B</span><span class="gp-badge gp-orbit">Orbit</span></div>
-          <div class="gp-row"><span class="gp-label">Inc.</span><span class="gp-val">45° / 20°</span></div>
-          <div class="gp-divider"></div>
-          <div class="gp-title">Go-Live</div>
-          <div class="gp-row"><span class="gp-label">Mainnet</span><span class="gp-val">Jun '26</span></div>
-          <div class="gp-row"><span class="gp-label">SBT</span><span class="gp-val">Apr '26</span></div>
-        </div>
+        <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+        <div class="spots-left" id="spots-left">Loading…</div>
       </div>
     </div>
-    <div class="counter-bar">
-      <div class="counter-row">
-        <span class="counter-label">Genesis spots claimed</span>
-        <span class="counter-nums"><span id="claimed-count">—</span> / 10,000</span>
+    <!-- RIGHT: globe -->
+    <div class="hero-globe-col">
+      <div class="globe-wrap">
+        <div class="globe-top-bar">
+          <div class="globe-legend">
+            <span class="globe-legend-item legend-agent"><span class="globe-legend-dot"></span>Agents</span>
+            <span class="globe-legend-item legend-validator"><span class="globe-legend-diamond"></span>Validators</span>
+          </div>
+          <span class="globe-live"><span class="globe-live-dot"></span>Live</span>
+        </div>
+        <canvas id="globe-canvas" width="560" height="340"></canvas>
+        <span class="globe-count" id="globe-agent-count">0 genesis agents registered</span>
       </div>
-      <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
-      <div class="spots-left" id="spots-left">Loading…</div>
     </div>
-    <a href="#register" class="btn btn-primary">Claim Your Genesis Spot →</a>
   </div>
 </section>
 
@@ -1076,74 +998,146 @@ function copyCode(btn) {
   const ctx = canvas.getContext('2d');
 
   const DPR = Math.min(window.devicePixelRatio || 1, 2);
-  const W = 500, H = 340;
+  const W = 560, H = 340;
   canvas.width  = W * DPR;
   canvas.height = H * DPR;
   canvas.style.width  = '100%';
   canvas.style.height = 'auto';
   ctx.scale(DPR, DPR);
 
-  const cx = W / 2, cy = H / 2 + 10;
-  const R  = 100;
+  const cx = W / 2, cy = H / 2 + 4;
+  const R  = 108;
 
-  // ── Continent land dots [lat, lon] ────────────────────────────
+  // ── Continent land dots [lat, lon] — corrected ─────────────────
   const LAND = [
-    // Europe
-    [71,28],[70,25],[68,18],[65,14],[62,5],[60,5],[58,5],[55,8],[53,5],
-    [52,5],[52,14],[50,8],[48,2],[46,6],[44,10],[42,12],[40,14],[38,14],[36,5],
-    [50,18],[48,18],[46,18],[44,22],[42,22],[38,24],[36,28],
-    [54,22],[52,22],[48,24],[50,25],[56,22],[60,22],[58,25],[62,22],[64,26],[66,28],
-    [58,-4],[56,-4],[53,-3],[51,-2],[50,0],
-    [44,-8],[42,-8],[40,-8],[38,-8],[36,-6],[38,-4],[40,-4],
-    // North America
-    [70,-95],[68,-90],[65,-85],[62,-75],[58,-75],[55,-74],[52,-75],[48,-70],
-    [45,-65],[43,-70],[40,-74],[38,-76],[35,-76],[32,-80],[28,-80],[25,-80],
-    [60,-125],[58,-124],[55,-130],[52,-128],[50,-125],[48,-124],[45,-124],[42,-124],
-    [38,-122],[35,-120],[32,-117],[28,-110],[25,-105],[22,-106],[20,-105],
-    [18,-95],[20,-100],[22,-100],[25,-100],[28,-100],[30,-100],[32,-96],
-    [35,-96],[38,-95],[40,-95],[43,-92],[46,-88],[48,-88],
-    [50,-95],[52,-97],[55,-100],[58,-97],[62,-100],[65,-105],[68,-110],[70,-120],
-    [65,-165],[62,-164],[60,-165],[63,-163],[70,-130],[72,-130],
-    // South America
-    [12,-72],[10,-68],[8,-65],[5,-62],[2,-60],[0,-50],
-    [-5,-40],[-10,-38],[-15,-39],[-20,-40],[-23,-43],[-28,-48],[-32,-52],
-    [-38,-57],[-42,-64],[-48,-65],[-52,-68],[-55,-65],[-54,-68],[-52,-72],
-    [10,-75],[5,-77],[0,-78],[-5,-80],[-10,-77],[-15,-75],[-18,-70],
-    [-22,-68],[-25,-70],[-30,-70],[-33,-70],[-38,-70],[-42,-72],
-    [0,-65],[-5,-70],[-10,-65],[-15,-60],[-20,-56],[-25,-57],[-30,-58],
-    // Africa
-    [37,10],[35,8],[32,10],[28,10],[22,15],[15,15],[10,14],[5,2],
-    [0,8],[-5,12],[-10,14],[-15,12],[-20,14],[-25,15],[-30,17],[-34,18],
-    [-35,20],[-34,26],[-30,30],[-25,33],[-20,34],[-15,35],[-10,38],
-    [0,42],[5,44],[10,42],[15,42],[20,38],[25,32],[30,32],[35,28],[37,25],
-    [22,10],[15,22],[10,22],[5,22],[0,22],[-5,22],[-10,22],[-15,22],[-20,22],[-25,22],[-30,24],
-    // Middle East / West Asia
-    [40,38],[38,36],[36,36],[34,36],[32,36],[30,32],[28,34],[26,38],[22,40],[18,42],[16,42],
-    [38,28],[40,32],[42,44],[40,50],[38,46],
-    // Central Asia / Russia
-    [70,32],[68,40],[65,45],[60,50],[55,52],[52,55],[50,60],[48,65],
-    [65,60],[62,62],[60,60],[58,58],[55,58],[52,62],[50,65],
-    [48,70],[45,72],[42,72],[38,68],[35,68],[32,68],[28,70],[25,72],[22,75],
-    [60,75],[58,78],[55,78],[52,80],[50,82],[48,82],[45,82],[42,80],
-    [55,88],[52,90],[50,95],[48,98],[45,95],[42,90],[38,88],
-    [65,70],[62,72],[60,68],[58,68],[55,72],[52,75],[48,76],[45,76],[42,78],
-    // East Asia
-    [68,108],[65,105],[62,104],[58,92],[55,90],[52,100],[50,105],
-    [48,110],[45,115],[42,118],[38,115],[35,110],[32,115],[28,112],[25,115],
-    [22,110],[18,106],[15,100],[12,100],[8,100],[5,100],[2,104],[0,106],
-    [40,140],[38,140],[35,135],[32,130],[28,120],[22,120],[18,110],[15,105],
-    [62,140],[58,130],[55,130],[52,130],[48,132],[44,130],[42,130],
-    [36,126],[34,126],[32,128],[26,120],[24,118],
-    [42,142],[40,141],[38,141],[36,136],[34,134],[32,130],
-    [20,100],[18,102],[16,102],[14,100],[12,99],[10,99],[8,98],
-    // Australia
-    [-15,128],[-18,130],[-20,135],[-22,138],[-18,142],[-14,142],[-12,136],
-    [-25,113],[-28,114],[-32,115],[-35,117],[-38,145],[-35,148],[-32,152],
-    [-28,153],[-22,150],[-18,146],[-14,143],
-    [-25,118],[-28,122],[-30,130],[-32,138],[-25,132],[-22,130],[-20,122],
-    // Greenland + Iceland
-    [76,-42],[72,-38],[68,-28],[64,-22],[70,-52],[74,-58],[78,-68],[80,-50],[82,-40],
-    [76,-68],[72,-56],[68,-52],[66,-18],[64,-18],[64,-22],[65,-24],
+    // ── EUROPE ──────────────────────────────────────────────────
+    // Scandinavia
+    [71,26],[70,24],[68,18],[66,14],[64,10],[62,6],[60,5],[58,6],[56,9],[55,10],
+    [54,10],[53,8],[52,5],[50,8],[49,2],[48,2],[47,8],[46,6],[44,8],[43,6],
+    [42,4],[41,2],[40,0],[38,-2],[36,-5],[36,-4],[38,-0],[40,0],
+    // Iberia full
+    [44,-8],[43,-8],[42,-8],[41,-8],[40,-8],[38,-8],[37,-8],[36,-6],[36,-2],[37,0],[38,0],
+    // Italy
+    [44,10],[43,12],[42,12],[40,14],[38,15],[37,15],[38,14],[40,16],[42,14],
+    // UK+Ireland
+    [58,-5],[57,-4],[56,-4],[54,-3],[52,-4],[51,-3],[50,-5],[51,-2],[52,-2],
+    [54,-1],[56,-3],[54,-6],[53,-8],[52,-8],[53,-8],[54,-8],
+    // E Europe & Balkans
+    [50,14],[49,18],[48,18],[47,18],[46,16],[44,18],[42,20],[40,22],[38,24],[37,22],[36,28],
+    [38,26],[40,26],[42,24],[44,22],[46,20],[48,22],[50,20],[52,18],[54,18],[55,20],[56,20],
+    // Baltic + Nordics
+    [56,22],[58,22],[59,25],[60,22],[62,22],[63,26],[64,26],[66,26],[68,28],[70,26],
+    [60,26],[62,30],[58,25],[56,22],[54,22],[52,20],[54,20],[56,18],[58,14],[60,14],
+    [60,18],[62,16],[64,16],[65,18],[66,20],[68,22],[70,20],
+    // ── NORTH AMERICA ───────────────────────────────────────────
+    // East coast
+    [70,-88],[68,-84],[65,-80],[62,-74],[58,-74],[55,-74],[52,-74],[48,-70],
+    [46,-64],[44,-66],[42,-70],[41,-70],[40,-74],[38,-76],[36,-76],[34,-78],
+    [32,-80],[30,-82],[28,-82],[26,-80],[25,-80],
+    // SE USA / Gulf
+    [30,-88],[30,-90],[28,-90],[26,-96],[24,-98],[22,-97],[20,-97],[18,-94],
+    [20,-100],[22,-100],[24,-100],[26,-100],[28,-100],[30,-98],[32,-96],
+    [34,-96],[36,-96],[38,-96],[40,-96],[42,-94],[44,-90],[46,-90],[48,-88],
+    [50,-88],[52,-96],[55,-96],[58,-94],[60,-92],[62,-92],[65,-98],[68,-104],[70,-100],
+    // Interior Canada
+    [68,-90],[65,-84],[62,-80],[58,-76],[55,-76],[52,-76],[50,-80],[48,-82],
+    // West coast
+    [70,-156],[68,-164],[66,-166],[64,-166],[62,-164],[60,-152],[58,-136],[56,-132],
+    [54,-130],[52,-128],[50,-124],[48,-122],[46,-124],[44,-124],[42,-124],[40,-124],
+    [38,-122],[36,-122],[34,-120],[32,-118],[30,-116],[28,-114],[26,-110],[24,-110],[22,-106],
+    // Alaska
+    [60,-140],[58,-138],[56,-134],[54,-132],[52,-128],[60,-148],[62,-150],[64,-148],
+    // ── SOUTH AMERICA ───────────────────────────────────────────
+    [12,-72],[10,-68],[8,-62],[6,-58],[4,-54],[2,-52],[0,-50],
+    [-4,-40],[-8,-36],[-10,-38],[-12,-38],[-14,-39],[-16,-40],[-20,-40],
+    [-22,-42],[-24,-44],[-26,-48],[-30,-50],[-32,-52],[-36,-58],[-38,-58],
+    [-40,-62],[-42,-64],[-44,-65],[-48,-66],[-50,-68],[-52,-68],[-54,-68],
+    [10,-76],[8,-76],[6,-76],[4,-76],[2,-78],[0,-78],[-2,-80],[-5,-80],
+    [-8,-78],[-10,-76],[-12,-76],[-14,-76],[-16,-74],[-18,-70],[-20,-70],
+    [-22,-68],[-24,-70],[-26,-70],[-28,-70],[-30,-70],[-32,-72],[-36,-72],
+    [-40,-74],[-44,-74],[-48,-74],[-52,-74],
+    [0,-66],[-4,-62],[-8,-64],[-12,-68],[-16,-68],[-4,-70],[-8,-72],
+    // ── AFRICA ──────────────────────────────────────────────────
+    // North coast
+    [37,10],[36,6],[35,2],[34,-2],[34,-6],[35,-4],[33,2],[32,8],[31,10],[30,14],
+    [30,18],[30,22],[30,26],[30,30],[28,34],[26,36],[24,38],[22,40],[20,42],[18,42],
+    // NE / Horn
+    [12,44],[10,44],[8,46],[6,44],[4,42],[2,44],[0,42],
+    // East coast
+    [-2,40],[-4,40],[-6,40],[-8,40],[-10,38],[-12,40],[-14,40],[-16,40],
+    [-18,36],[-20,36],[-22,34],[-24,36],[-26,34],[-28,32],[-30,30],[-32,28],
+    [-34,28],[-36,24],[-35,20],[-34,18],
+    // West coast
+    [-30,17],[-26,15],[-22,14],[-18,12],[-14,12],[-10,14],[-6,12],[-4,10],
+    [-2,9],[0,8],[2,6],[4,4],[5,2],[6,2],[8,2],[10,15],[12,14],[14,16],[16,16],
+    [18,16],[20,16],[22,16],[24,14],[26,14],[28,12],[30,10],[32,10],[34,8],[36,6],
+    // Interior
+    [10,22],[5,22],[0,22],[-5,22],[-10,22],[-15,22],[-20,22],
+    [0,18],[0,28],[5,28],[10,28],[15,22],[20,22],[25,22],
+    // Madagascar
+    [-14,50],[-16,50],[-18,48],[-20,47],[-22,48],[-24,46],[-22,44],[-18,44],[-14,48],
+    // ── ASIA ─────────────────────────────────────────────────────
+    // Arabian peninsula
+    [28,48],[26,50],[24,52],[22,58],[20,58],[18,56],[16,52],[14,44],[12,44],
+    [16,42],[18,42],[20,40],[22,40],[24,38],[26,38],[28,34],[30,32],[30,48],
+    [32,48],[34,50],[36,48],[38,46],[40,50],[40,44],[42,44],[42,40],[40,36],
+    // Turkey
+    [42,28],[40,26],[38,26],[37,28],[36,30],[36,34],[37,36],[38,40],[40,38],[40,32],[42,30],
+    // Iran/Iraq
+    [38,46],[36,46],[34,48],[32,50],[30,50],[28,52],[26,52],[24,52],
+    // Central Asia
+    [50,50],[50,60],[48,58],[46,60],[44,62],[42,62],[40,62],[38,62],[36,62],
+    [36,66],[38,66],[40,66],[42,70],[44,70],[46,70],[48,66],[50,68],[52,70],
+    [54,68],[56,68],[58,70],[60,72],[62,72],[60,62],[58,58],[56,58],[54,58],
+    // Russia west
+    [68,36],[65,40],[60,40],[56,42],[55,44],[55,50],[55,56],[55,60],[60,50],
+    [62,50],[65,50],[68,50],[70,50],[70,56],[72,56],[72,68],
+    // Siberia
+    [65,62],[60,62],[56,62],[52,62],[50,66],[50,70],[52,72],[55,72],[58,72],
+    [60,72],[62,70],[65,68],[68,68],[70,70],[72,70],
+    [55,80],[52,82],[50,86],[48,84],[50,88],[52,88],[55,88],[58,86],[60,82],[62,82],[65,82],[68,82],[70,82],
+    [55,92],[52,94],[50,96],[50,100],[52,100],[55,100],[58,98],[60,98],[62,100],[65,100],[68,105],[70,105],
+    [55,106],[52,108],[50,110],[48,112],[50,116],[52,118],[55,118],[58,114],[60,112],[62,110],[65,108],[68,112],[70,130],
+    [65,124],[62,124],[60,124],[62,134],[65,136],[68,136],[70,140],[72,138],
+    // China
+    [52,100],[50,106],[48,112],[45,116],[42,118],[38,116],[35,112],[32,116],
+    [28,112],[25,114],[22,110],[20,110],
+    // China coast
+    [40,122],[38,122],[36,120],[34,120],[32,122],[30,122],[28,120],[26,120],[24,118],[22,112],
+    // Korea & Japan
+    [40,126],[38,126],[36,128],[34,128],[36,130],
+    [44,142],[42,140],[40,140],[38,140],[36,136],[34,134],[32,130],[34,130],[36,136],[38,141],[40,142],
+    // SE Asia
+    [22,100],[20,100],[18,102],[16,104],[14,104],[12,102],[10,100],[8,100],
+    [14,108],[16,106],[18,106],[20,106],[22,104],
+    [10,104],[8,102],[4,103],[2,104],[0,104],[-2,108],[-4,108],[-6,106],
+    [4,116],[2,112],[0,110],[-2,112],[-4,114],[-6,112],
+    // India
+    [28,68],[26,68],[24,68],[22,68],[20,72],[18,72],[16,74],[14,76],[12,78],[10,78],[8,78],
+    [8,80],[10,80],[12,80],[14,80],[16,82],[18,84],[20,86],[22,88],[24,88],[26,90],[28,78],[30,76],[32,74],
+    // ── AUSTRALIA ───────────────────────────────────────────────
+    [-12,132],[-14,132],[-12,136],[-14,136],[-12,138],[-14,140],[-14,142],[-16,142],
+    [-18,142],[-20,148],[-22,150],[-24,150],[-26,152],[-28,153],[-30,152],
+    [-32,152],[-34,150],[-36,148],[-38,146],[-38,144],[-38,140],
+    [-36,138],[-34,136],[-32,134],[-30,132],[-28,126],[-24,114],[-22,114],
+    [-24,112],[-26,114],[-28,114],[-30,114],[-32,116],[-34,118],[-36,120],
+    [-24,128],[-26,128],[-28,130],[-30,132],[-26,132],[-24,132],[-22,132],[-20,130],
+    // Tasmania
+    [-42,146],[-44,147],[-44,148],[-42,148],
+    // ── GREENLAND ───────────────────────────────────────────────
+    [76,-20],[74,-22],[72,-26],[70,-26],[68,-28],[66,-22],[64,-22],[64,-18],
+    [66,-18],[68,-22],[70,-18],[72,-18],[74,-18],[76,-20],
+    [76,-44],[74,-52],[72,-56],[70,-52],[70,-68],[72,-68],[74,-64],[76,-60],
+    [78,-64],[80,-56],[82,-46],[82,-36],[80,-26],[78,-22],
+    // Iceland
+    [65,-24],[64,-22],[63,-18],[64,-14],[66,-14],[66,-18],[65,-24],
+    // Cuba
+    [22,-80],[22,-82],[22,-84],[20,-78],[20,-76],[20,-74],[20,-72],[18,-66],
+    // New Zealand
+    [-34,172],[-36,174],[-38,175],[-40,176],[-42,172],[-44,170],[-46,168],
+    [-36,174],[-38,176],[-40,174],[-42,172],[-44,172],[-46,168],
+    // Taiwan
+    [26,122],[24,122],[22,120],[24,120],[26,122],
   ];
 
   // Genesis agents [lat, lon]
@@ -1165,14 +1159,6 @@ function copyCode(btn) {
   const agentArcProg = AGENT_ARCS.map(() => Math.random());
   const valArcProg   = VAL_ARCS.map(() => Math.random() * 2);
 
-  // Satellite definitions
-  const SATS = [
-    { r:132, speed:1.26, inc:51.6*Math.PI/180, offset:0,   label:'ISS',   color:'#A5B4FC', shape:'iss' },
-    { r:120, speed:0.90, inc:45  *Math.PI/180, offset:2.1, label:'SAT-A', color:'#C4B9FF', shape:'dot' },
-    { r:116, speed:0.72, inc:20  *Math.PI/180, offset:0.8, label:'SAT-B', color:'#00C49A', shape:'dot' },
-  ];
-  const MOON_R = 158, MOON_INC = 5 * Math.PI / 180, MOON_SPEED = 0.014;
-
   function toXYZ(lat, lon, rotation) {
     const phi   = (90 - lat) * Math.PI / 180;
     const theta = (lon + rotation) * Math.PI / 180;
@@ -1185,19 +1171,6 @@ function copyCode(btn) {
 
   function proj(x, y, z) {
     return { px: cx + x, py: cy + y, vis: z >= -R * 0.08 };
-  }
-
-  function orbPos(orbitR, theta, inc) {
-    const x = orbitR * Math.cos(theta);
-    const y = orbitR * Math.sin(theta) * Math.cos(inc);
-    const z = orbitR * Math.sin(theta) * Math.sin(inc);
-    return { px: cx + x, py: cy + y, z };
-  }
-
-  function behindSphere(px, py, z) {
-    if (z >= 0) return false;
-    const dx = px - cx, dy = py - cy;
-    return (dx*dx + dy*dy) < R * R * 1.04;
   }
 
   function drawArc(pA, pB, color, t, progress, speed) {
@@ -1219,86 +1192,11 @@ function copyCode(btn) {
     ctx.strokeStyle = color; ctx.lineWidth = 1; ctx.stroke();
   }
 
-  function drawOrbitPath(orbitR, inc, color) {
-    ctx.beginPath();
-    for (let th = 0; th <= Math.PI * 2 + 0.1; th += 0.08) {
-      const px2 = cx + orbitR * Math.cos(th);
-      const py2 = cy + orbitR * Math.sin(th) * Math.cos(inc);
-      th === 0 ? ctx.moveTo(px2, py2) : ctx.lineTo(px2, py2);
-    }
-    ctx.strokeStyle = color; ctx.lineWidth = .4;
-    ctx.setLineDash([2, 6]); ctx.stroke(); ctx.setLineDash([]);
-  }
-
-  function drawSatellite(px, py, sat, alpha) {
-    if (sat.shape === 'iss') {
-      ctx.save(); ctx.globalAlpha = alpha;
-      ctx.fillStyle = sat.color;
-      ctx.fillRect(px - 7, py - 1.5, 4.5, 3);
-      ctx.fillRect(px + 2.5, py - 1.5, 4.5, 3);
-      ctx.fillStyle = '#E0D8FF';
-      ctx.fillRect(px - 2, py - 2, 4, 4);
-      ctx.font = '6.5px IBM Plex Mono,monospace';
-      ctx.fillStyle = `rgba(100,80,200,${Math.min(alpha,.85)})`;
-      ctx.textAlign = 'center';
-      ctx.fillText('ISS', px, py - 9);
-      ctx.restore();
-    } else {
-      ctx.save(); ctx.globalAlpha = alpha;
-      ctx.beginPath(); ctx.arc(px, py, 2.5, 0, Math.PI * 2);
-      ctx.fillStyle = sat.color; ctx.fill();
-      ctx.font = '6.5px IBM Plex Mono,monospace';
-      ctx.fillStyle = `rgba(100,80,200,${Math.min(alpha,.75)})`;
-      ctx.textAlign = 'center';
-      ctx.fillText(sat.label, px, py - 7);
-      ctx.restore();
-    }
-  }
-
-  function drawMoon(px, py, z) {
-    const mr = 12;
-    const front = z >= 0;
-    ctx.save(); ctx.globalAlpha = front ? 0.95 : 0.28;
-    // glow
-    const mg = ctx.createRadialGradient(px, py, 0, px, py, mr + 9);
-    mg.addColorStop(0, 'rgba(200,192,228,.2)'); mg.addColorStop(1, 'rgba(200,192,228,0)');
-    ctx.beginPath(); ctx.arc(px, py, mr + 9, 0, Math.PI * 2); ctx.fillStyle = mg; ctx.fill();
-    // body
-    const mb = ctx.createRadialGradient(px - 3, py - 3, 0, px, py, mr);
-    mb.addColorStop(0, '#EAE5F5'); mb.addColorStop(.5, '#D5CCEC'); mb.addColorStop(1, '#B9B0D4');
-    ctx.beginPath(); ctx.arc(px, py, mr, 0, Math.PI * 2);
-    ctx.fillStyle = mb; ctx.fill();
-    ctx.strokeStyle = 'rgba(140,128,175,.3)'; ctx.lineWidth = .8; ctx.stroke();
-    // craters
-    [[-4,-3,2.5],[3,1,2],[0,5,1.5],[-2,2,1.2],[4,-4,1]].forEach(([dx,dy,cr]) => {
-      ctx.beginPath(); ctx.arc(px+dx, py+dy, cr, 0, Math.PI*2);
-      ctx.fillStyle = 'rgba(145,135,168,.22)'; ctx.fill();
-    });
-    // agent dots
-    [[px-3,py+2],[px+3,py-3]].forEach(([ax,ay]) => {
-      ctx.beginPath(); ctx.arc(ax, ay, 1.5, 0, Math.PI*2);
-      ctx.fillStyle = 'rgba(123,97,255,.95)'; ctx.fill();
-      const ag = ctx.createRadialGradient(ax,ay,0,ax,ay,5);
-      ag.addColorStop(0,'rgba(123,97,255,.25)'); ag.addColorStop(1,'rgba(123,97,255,0)');
-      ctx.beginPath(); ctx.arc(ax,ay,5,0,Math.PI*2); ctx.fillStyle=ag; ctx.fill();
-    });
-    if (front) {
-      ctx.font = '7px IBM Plex Mono,monospace';
-      ctx.fillStyle = 'rgba(70,50,150,.85)'; ctx.textAlign = 'center';
-      ctx.fillText('MOON NODE', px, py - mr - 5);
-      ctx.fillStyle = 'rgba(123,97,255,.6)'; ctx.font = '6.5px IBM Plex Mono,monospace';
-      ctx.fillText('2 Agents', px, py + mr + 9);
-    }
-    ctx.restore();
-  }
-
   function drawFrame(rotation) {
     ctx.clearRect(0, 0, W, H);
     const t = Date.now() / 1000;
 
-    // Orbit paths (behind everything)
-    SATS.forEach(s => drawOrbitPath(s.r, s.inc, 'rgba(123,97,255,.1)'));
-    drawOrbitPath(MOON_R, MOON_INC, 'rgba(180,168,210,.14)');
+    // (no orbital objects)
 
     // Sphere base
     const sg = ctx.createRadialGradient(cx-22, cy-22, 0, cx, cy, R);
@@ -1313,8 +1211,8 @@ function copyCode(btn) {
       const {px, py, vis} = proj(x, y, z);
       if (!vis) return;
       const depth = (z / R + 1) / 2;
-      ctx.beginPath(); ctx.arc(px, py, 1.3, 0, Math.PI*2);
-      ctx.fillStyle = `rgba(70,52,170,${0.1 + depth * 0.22})`; ctx.fill();
+      ctx.beginPath(); ctx.arc(px, py, 1.5, 0, Math.PI*2);
+      ctx.fillStyle = `rgba(70,52,170,${0.15 + depth * 0.28})`; ctx.fill();
     });
 
     // Grid
@@ -1383,23 +1281,6 @@ function copyCode(btn) {
     // Sphere border
     ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI*2);
     ctx.strokeStyle='rgba(123,97,255,.14)'; ctx.lineWidth=1; ctx.stroke();
-
-    // Orbital objects — behind sphere first
-    const moonTheta = t * MOON_SPEED;
-    const moon = orbPos(MOON_R, moonTheta, MOON_INC);
-    SATS.forEach(sat => {
-      const o = orbPos(sat.r, t * sat.speed + sat.offset, sat.inc);
-      if (behindSphere(o.px, o.py, o.z)) return;
-      if (o.z < 0) drawSatellite(o.px, o.py, sat, 0.22);
-    });
-    if (moon.z < 0 && !behindSphere(moon.px, moon.py, moon.z)) drawMoon(moon.px, moon.py, moon.z);
-
-    // Orbital objects — front
-    SATS.forEach(sat => {
-      const o = orbPos(sat.r, t * sat.speed + sat.offset, sat.inc);
-      if (o.z >= 0) drawSatellite(o.px, o.py, sat, 0.9);
-    });
-    if (moon.z >= 0) drawMoon(moon.px, moon.py, moon.z);
   }
 
   function animate() {
