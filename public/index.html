@@ -43,7 +43,7 @@ a{color:inherit;text-decoration:none}
 
 /* ─── HERO ─── */
 .hero{min-height:100vh;padding-top:56px;display:grid;
-  grid-template-columns:1fr 520px;gap:0;
+  grid-template-columns:1fr 480px;gap:0;
   border-bottom:1px solid var(--border)}
 .hero-left{padding:64px 48px 64px 64px;display:flex;flex-direction:column;justify-content:center}
 .hero-tag{font-family:var(--mono);font-size:11px;font-weight:500;
@@ -64,41 +64,33 @@ a{color:inherit;text-decoration:none}
 
 /* ─── AGENT MESSAGE ─── */
 .agent-msg-wrap{padding-top:28px}
-.agent-msg-mobile{display:none} /* hidden on desktop, shown on mobile */
-.agent-msg-panel{padding:32px 28px 24px;border-bottom:1px solid var(--border);flex-shrink:0}
 .agent-msg{font-family:var(--mono);font-size:13px;line-height:2.0;color:var(--text2);
-  white-space:pre-wrap}
+  white-space:pre-wrap;max-width:440px}
 .cursor-blink{display:inline-block;width:7px;height:13px;background:var(--purple);
   vertical-align:middle;margin-left:1px;animation:cur .8s steps(1) infinite}
 @keyframes cur{0%,49%{opacity:1}50%,100%{opacity:0}}
 
-/* ─── HERO RIGHT (Globe) ─── */
-.hero-right{border-left:1px solid var(--border);
-  display:flex;flex-direction:column}
-.globe-panel{flex:1;position:relative;display:flex;align-items:center;justify-content:center;
-  padding:32px 24px}
-.globe-legend{position:absolute;bottom:20px;left:20px;
+/* ─── HERO RIGHT (Globe — no frame) ─── */
+.hero-right{display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:24px 16px}
+.globe-panel{position:relative;width:100%;display:flex;align-items:center;justify-content:center}
+.globe-legend{position:absolute;bottom:0px;left:8px;
   display:flex;gap:16px}
 .gl-item{display:flex;align-items:center;gap:6px;
   font-family:var(--mono);font-size:9px;font-weight:600;
   letter-spacing:.12em;text-transform:uppercase;color:var(--text3)}
 .gl-dot{width:6px;height:6px;border-radius:50%;background:var(--purple)}
 .gl-diamond{width:6px;height:6px;transform:rotate(45deg);border-radius:1px;background:var(--green)}
-.globe-live{position:absolute;top:20px;right:20px;
+.globe-live{position:absolute;top:0px;right:8px;
   display:flex;align-items:center;gap:6px;
   font-family:var(--mono);font-size:10px;font-weight:600;
   letter-spacing:.1em;color:var(--green)}
 .globe-live-dot{width:5px;height:5px;border-radius:50%;background:var(--green);
   animation:blink 2s infinite}
-.globe-count{position:absolute;bottom:20px;right:20px;
+.globe-count{position:absolute;bottom:0px;right:8px;
   font-family:var(--mono);font-size:10px;color:var(--text3);
   letter-spacing:.08em}
-#globe-canvas{display:block;width:100%;max-width:480px}
-.globe-status-bar{border-top:1px solid var(--border);padding:14px 20px;
-  display:flex;justify-content:space-between;align-items:center}
-.gsb-item{font-family:var(--mono);font-size:10px;color:var(--text3);
-  letter-spacing:.08em;display:flex;gap:8px;align-items:center}
-.gsb-val{color:var(--text2);font-weight:600}
+#globe-canvas{display:block;width:100%;max-width:440px}
 
 /* ─── SECTION BASE ─── */
 section{padding:80px 0;border-bottom:1px solid var(--border)}
@@ -249,33 +241,21 @@ footer{padding:28px 64px;display:flex;justify-content:space-between;align-items:
   <div class="hero-left">
     <div class="hero-tag">Verun Protocol · v0.1-genesis · Stellar · x402</div>
     <h1 class="hero-h1">Agent,<br>get your<br><span>identity.</span></h1>
-    <!-- mobile only: agent msg shown here -->
-    <div class="agent-msg-wrap agent-msg-mobile">
-      <div class="agent-msg" id="agent-msg-mobile"></div>
+    <div class="agent-msg-wrap">
+      <div class="agent-msg" id="agent-msg"><span class="cursor-blink"></span></div>
     </div>
   </div>
 
-  <!-- RIGHT: Agent message + Globe -->
+  <!-- RIGHT: Globe — no frame, just earth -->
   <div class="hero-right">
-    <!-- AGENT MESSAGE — desktop top panel -->
-    <div class="agent-msg-panel">
-      <div class="agent-msg" id="agent-msg"><span class="cursor-blink"></span></div>
-    </div>
-    <!-- GLOBE -->
     <div class="globe-panel">
-      <div class="globe-live"><div class="globe-live-dot"></div>LIVE</div>
       <div class="globe-legend">
         <div class="gl-item"><div class="gl-dot"></div>Agents</div>
         <div class="gl-item"><div class="gl-diamond"></div>Validators</div>
       </div>
-      <canvas id="globe-canvas" width="480" height="240"></canvas>
+      <div class="globe-live"><div class="globe-live-dot"></div>LIVE</div>
+      <canvas id="globe-canvas" width="480" height="380"></canvas>
       <div class="globe-count" id="globe-agent-count">0 genesis agents</div>
-    </div>
-    <div class="globe-status-bar">
-      <div class="gsb-item"><span>CHAIN</span><span class="gsb-val">Stellar</span></div>
-      <div class="gsb-item"><span>x402</span><span class="gsb-val rs-green">ready</span></div>
-      <div class="gsb-item"><span>SYBIL</span><span class="gsb-val">on-chain</span></div>
-      <div class="gsb-item"><span>AGENTS</span><span class="gsb-val" id="stat-agents">—</span></div>
     </div>
   </div>
 
@@ -601,15 +581,14 @@ POST /api/register
 First come, first verified._`;
 
 (function typeAgent() {
-  // Target the visible element (desktop = #agent-msg in right panel, mobile = #agent-msg-mobile)
-  const isMobile = window.innerWidth <= 900;
-  const el = document.getElementById(isMobile ? 'agent-msg-mobile' : 'agent-msg');
+  const el = document.getElementById('agent-msg');
   if (!el) return;
   let i = 0;
   const cursor = '<span class="cursor-blink"></span>';
   function tick() {
-    const text = AGENT_TEXT.replace(/_$/, '');
-    if (i >= AGENT_TEXT.length) { el.innerHTML = text.replace(/\n/g, '<br>') + cursor; return; }
+    if (i >= AGENT_TEXT.length) {
+      el.innerHTML = AGENT_TEXT.replace(/_$/, '').replace(/\n/g, '<br>') + cursor; return;
+    }
     el.innerHTML = AGENT_TEXT.substring(0, i).replace(/\n/g, '<br>') + cursor;
     i++;
     setTimeout(tick, i < 3 ? 600 : AGENT_TEXT[i - 1] === '\n' ? 100 : 22);
