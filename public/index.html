@@ -64,8 +64,10 @@ a{color:inherit;text-decoration:none}
 
 /* ─── AGENT MESSAGE ─── */
 .agent-msg-wrap{padding-top:28px}
-.agent-msg{font-family:var(--mono);font-size:14px;line-height:2.0;color:var(--text2);
-  white-space:pre-wrap;max-width:480px}
+.agent-msg-mobile{display:none} /* hidden on desktop, shown on mobile */
+.agent-msg-panel{padding:32px 28px 24px;border-bottom:1px solid var(--border);flex-shrink:0}
+.agent-msg{font-family:var(--mono);font-size:13px;line-height:2.0;color:var(--text2);
+  white-space:pre-wrap}
 .cursor-blink{display:inline-block;width:7px;height:13px;background:var(--purple);
   vertical-align:middle;margin-left:1px;animation:cur .8s steps(1) infinite}
 @keyframes cur{0%,49%{opacity:1}50%,100%{opacity:0}}
@@ -215,6 +217,7 @@ footer{padding:28px 64px;display:flex;justify-content:space-between;align-items:
   .hero{grid-template-columns:1fr}
   .hero-right{display:none}
   .hero-left{padding:48px 32px}
+  .agent-msg-mobile{display:block} /* show on mobile */
   .container{padding:0 32px}
   .code-grid{grid-template-columns:1fr}
   .reg-inner{grid-template-columns:1fr}
@@ -246,22 +249,26 @@ footer{padding:28px 64px;display:flex;justify-content:space-between;align-items:
   <div class="hero-left">
     <div class="hero-tag">Verun Protocol · v0.1-genesis · Stellar · x402</div>
     <h1 class="hero-h1">Agent,<br>get your<br><span>identity.</span></h1>
-
-    <!-- AGENT MESSAGE — visible on first load -->
-    <div class="agent-msg-wrap">
-      <div class="agent-msg" id="agent-msg"><span class="cursor-blink"></span></div>
+    <!-- mobile only: agent msg shown here -->
+    <div class="agent-msg-wrap agent-msg-mobile">
+      <div class="agent-msg" id="agent-msg-mobile"></div>
     </div>
   </div>
 
-  <!-- RIGHT: Globe -->
+  <!-- RIGHT: Agent message + Globe -->
   <div class="hero-right">
+    <!-- AGENT MESSAGE — desktop top panel -->
+    <div class="agent-msg-panel">
+      <div class="agent-msg" id="agent-msg"><span class="cursor-blink"></span></div>
+    </div>
+    <!-- GLOBE -->
     <div class="globe-panel">
       <div class="globe-live"><div class="globe-live-dot"></div>LIVE</div>
       <div class="globe-legend">
         <div class="gl-item"><div class="gl-dot"></div>Agents</div>
         <div class="gl-item"><div class="gl-diamond"></div>Validators</div>
       </div>
-      <canvas id="globe-canvas" width="480" height="320"></canvas>
+      <canvas id="globe-canvas" width="480" height="240"></canvas>
       <div class="globe-count" id="globe-agent-count">0 genesis agents</div>
     </div>
     <div class="globe-status-bar">
@@ -594,15 +601,18 @@ POST /api/register
 First come, first verified._`;
 
 (function typeAgent() {
-  const el = document.getElementById('agent-msg');
+  // Target the visible element (desktop = #agent-msg in right panel, mobile = #agent-msg-mobile)
+  const isMobile = window.innerWidth <= 900;
+  const el = document.getElementById(isMobile ? 'agent-msg-mobile' : 'agent-msg');
   if (!el) return;
   let i = 0;
   const cursor = '<span class="cursor-blink"></span>';
   function tick() {
-    if (i >= AGENT_TEXT.length) { el.innerHTML = AGENT_TEXT.replace(/_$/, '') + cursor; return; }
-    el.innerHTML = AGENT_TEXT.substring(0, i).replace('\n', '<br>').replace(/\n/g, '<br>') + cursor;
+    const text = AGENT_TEXT.replace(/_$/, '');
+    if (i >= AGENT_TEXT.length) { el.innerHTML = text.replace(/\n/g, '<br>') + cursor; return; }
+    el.innerHTML = AGENT_TEXT.substring(0, i).replace(/\n/g, '<br>') + cursor;
     i++;
-    setTimeout(tick, i < 3 ? 600 : AGENT_TEXT[i - 1] === '\n' ? 120 : 22);
+    setTimeout(tick, i < 3 ? 600 : AGENT_TEXT[i - 1] === '\n' ? 100 : 22);
   }
   setTimeout(tick, 1200);
 })();
