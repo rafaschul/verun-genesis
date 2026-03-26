@@ -26,30 +26,16 @@ a{color:var(--purple);text-decoration:none}
   padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between;gap:16px}
 .nav-logo{font-weight:800;font-size:18px;color:var(--text)}
 .nav-logo .kya{color:var(--purple)}
+.nav-links{display:flex;align-items:center;gap:4px;flex:1;justify-content:center}
+.nav-link{font-size:13px;font-weight:500;color:var(--text2);padding:6px 12px;border-radius:6px;
+  transition:.15s;text-decoration:none}
+.nav-link:hover{background:var(--purple-light);color:var(--purple)}
+.btn-sm{padding:8px 16px;font-size:13px}
 .stellar-badge{display:flex;align-items:center;gap:6px;background:var(--purple-light);
   color:var(--purple);font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;
   letter-spacing:.06em;text-transform:uppercase}
 .stellar-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-
-/* ─── MODE SWITCHER (sticky below nav) ─── */
-.mode-bar{position:sticky;top:60px;z-index:99;background:#fff;border-bottom:1px solid var(--border);
-  padding:12px 24px;display:flex;justify-content:center}
-.mode-toggle{display:flex;background:var(--bg);border:1.5px solid var(--border);border-radius:50px;
-  padding:4px;gap:4px;position:relative}
-.mode-btn{display:flex;align-items:center;gap:8px;padding:10px 28px;border-radius:50px;
-  font-size:14px;font-weight:600;cursor:pointer;border:none;background:transparent;
-  color:var(--text2);transition:.2s;white-space:nowrap}
-.mode-btn .mode-icon{font-size:18px}
-.mode-btn.active{background:var(--purple);color:#fff;box-shadow:0 2px 12px rgba(123,97,255,.3)}
-.mode-btn.active-agent{background:var(--text);color:#fff;box-shadow:0 2px 12px rgba(13,13,43,.2)}
-.mode-hint{text-align:center;font-size:12px;color:var(--text3);margin-top:6px;display:none}
-
-/* ─── SECTIONS VISIBILITY ─── */
-.human-section{display:block}
-.agent-section{display:none}
-body.agent-mode .human-section{display:none}
-body.agent-mode .agent-section{display:block}
 
 /* ─── COMMON ─── */
 .container{max-width:1100px;margin:0 auto;padding:0 24px}
@@ -74,17 +60,43 @@ section{padding:72px 0}
 .pill-red{background:#FFF5F5;color:var(--red)}
 .pill-dark{background:#F3F4F6;color:var(--text)}
 
-/* ─── HERO HUMAN ─── */
-.hero{padding:80px 24px;text-align:center;background:linear-gradient(180deg,#F0EEFF 0%,var(--bg) 100%)}
+/* ─── HERO ─── */
+.hero{padding:80px 24px 60px;text-align:center;background:linear-gradient(180deg,#F0EEFF 0%,var(--bg) 100%)}
 .hero-eyebrow{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
   color:var(--purple);margin-bottom:16px}
 .hero h1{font-size:clamp(36px,6vw,64px);font-weight:800;line-height:1.1;margin-bottom:20px}
 .hero h1 span{color:var(--purple)}
-.hero-sub{font-size:18px;color:var(--text2);max-width:560px;margin:0 auto 32px}
+.hero-sub{font-size:18px;color:var(--text2);max-width:600px;margin:0 auto 24px}
+.hero-disclaimer{font-size:12px;color:var(--text3);max-width:540px;margin:0 auto 32px;
+  font-family:var(--mono);background:rgba(123,97,255,.06);border:1px solid rgba(123,97,255,.12);
+  border-radius:8px;padding:8px 14px}
+.hero-cta-row{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-bottom:40px}
 .hero-stats{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin-bottom:36px}
 .hero-stat{background:#fff;border:1px solid var(--border);border-radius:8px;
   padding:8px 16px;font-size:13px;color:var(--text2)}
 .hero-stat strong{color:var(--text);display:block;font-size:15px}
+/* ─── AGENTS SECTION ─── */
+.agents-section{background:#0D0D2B;padding:72px 0}
+.agents-section .section-eyebrow{color:#7B61FF}
+.agents-section .section-title{color:#fff}
+.agents-section .section-sub{color:#9CA3AF}
+/* ─── API HEALTH ─── */
+.health-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-bottom:32px}
+.health-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:20px;
+  display:flex;flex-direction:column;gap:8px}
+.health-card-title{font-size:13px;font-weight:600;color:var(--text);font-family:var(--mono)}
+.health-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:6px;
+  font-size:12px;font-weight:700;font-family:var(--mono)}
+.health-ok{background:var(--green-light);color:#065F46}
+.health-warn{background:#FEF3C7;color:#92400E}
+.health-err{background:#FFF5F5;color:var(--red)}
+.health-loading{background:#F3F4F6;color:var(--text3)}
+.health-detail{font-size:11px;color:var(--text3);font-family:var(--mono);margin-top:2px}
+/* ─── FAQ ─── */
+.faq-list{display:flex;flex-direction:column;gap:0;max-width:720px;margin:0 auto}
+.faq-item{border-bottom:1px solid var(--border);padding:20px 0}
+.faq-q{font-weight:700;font-size:15px;margin-bottom:8px}
+.faq-a{font-size:14px;color:var(--text2);line-height:1.7}
 .counter-bar{background:#fff;border:1px solid var(--border);border-radius:12px;
   padding:20px 28px;max-width:600px;margin:0 auto 40px;text-align:left}
 .counter-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
@@ -282,39 +294,30 @@ footer a:hover{color:var(--purple)}
 <!-- NAV -->
 <nav class="nav">
   <div class="nav-logo">Verun <span class="kya">KYA</span></div>
-  <div class="stellar-badge">
-    <span class="stellar-dot"></span>
-    Stellar Testnet · Genesis Beta
+  <div class="nav-links">
+    <a href="#home" class="nav-link">Overview</a>
+    <a href="#register" class="nav-link">Register</a>
+    <a href="#agents" class="nav-link">For Agents</a>
+    <a href="#api-status" class="nav-link">API Status</a>
   </div>
+  <a href="#register" class="btn btn-primary btn-sm">Claim Genesis Spot →</a>
 </nav>
-
-<!-- ═══ MODE SWITCHER ═══ -->
-<div class="mode-bar">
-  <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
-    <div class="mode-toggle">
-      <button class="mode-btn active" id="btn-human" onclick="setMode('human')">
-        <span class="mode-icon">🏛️</span> For Humans
-      </button>
-      <button class="mode-btn" id="btn-agent" onclick="setMode('agent')">
-        <span class="mode-icon">🤖</span> For Agents
-      </button>
-    </div>
-    <div style="font-size:11px;color:var(--text3)" id="mode-sub">
-      Validators · Compliance · Partnerships
-    </div>
-  </div>
-</div>
 
 <!-- ════════════════════════════════════════
      HUMAN MODE
 ════════════════════════════════════════ -->
 
-<!-- HERO HUMAN -->
-<section class="hero human-section" id="home">
+<!-- HERO -->
+<section class="hero" id="home">
   <div class="container">
     <div class="hero-eyebrow">Verun Protocol · Genesis Registration · March 2026</div>
-    <h1>Secure Your Agent's<br><span>Identity. On Stellar.</span></h1>
-    <p class="hero-sub">The only on-chain KYA layer for AI agents in regulated European finance. Founding positions are permanent, non-transferable, and close at 10,000.</p>
+    <h1>Know Your Agent.<br><span>On Stellar.</span></h1>
+    <p class="hero-sub">The only compliance-ready identity layer for AI agents in regulated European finance. Stellar on-chain anchor · BaFin-compatible · 10,000 founding positions — permanently non-transferable.</p>
+    <p class="hero-disclaimer">Genesis Beta: off-chain KYA scoring, anchored on Stellar Testnet. Institutional 2-of-3 validator consensus goes live June 2026.</p>
+    <div class="hero-cta-row">
+      <a href="#register" class="btn btn-primary">Claim Genesis Spot →</a>
+      <a href="#agents" class="btn btn-outline">For Agents · API Docs</a>
+    </div>
     <div class="hero-stats">
       <div class="hero-stat"><strong>10,000</strong> Genesis Spots</div>
       <div class="hero-stat"><strong>Score 350</strong> Founding Bonus</div>
@@ -396,7 +399,7 @@ footer a:hover{color:var(--purple)}
 </section>
 
 <!-- TIERS HUMAN -->
-<section class="human-section" id="tiers">
+<section id="tiers">
   <div class="container">
     <div class="section-eyebrow">Genesis Tiers</div>
     <h2 class="section-title">Three Founding Classes</h2>
@@ -442,7 +445,7 @@ footer a:hover{color:var(--purple)}
 </section>
 
 <!-- REGISTRATION FORM HUMAN -->
-<section class="human-section" id="register" style="background:var(--purple-light);padding:72px 0">
+<section id="register" style="background:var(--purple-light);padding:72px 0">
   <div class="container">
     <div class="section-eyebrow">Genesis Registration</div>
     <h2 class="section-title">Claim Your Position</h2>
@@ -503,7 +506,7 @@ footer a:hover{color:var(--purple)}
 </section>
 
 <!-- SCORE TABLE HUMAN -->
-<section class="human-section" id="scores">
+<section id="scores">
   <div class="container">
     <div class="section-eyebrow">KYA Score System</div>
     <h2 class="section-title">What Your Score Unlocks</h2>
@@ -524,7 +527,7 @@ footer a:hover{color:var(--purple)}
 </section>
 
 <!-- FEATURES HUMAN -->
-<section class="human-section" style="background:#fff">
+<section style="background:#fff">
   <div class="container">
     <div class="section-eyebrow">Why Genesis</div>
     <h2 class="section-title">What Genesis Agents Get</h2>
@@ -568,8 +571,8 @@ footer a:hover{color:var(--purple)}
      AGENT MODE
 ════════════════════════════════════════ -->
 
-<!-- HERO AGENT -->
-<div class="hero-agent agent-section">
+<!-- FOR AGENTS -->
+<div class="hero-agent" id="agents">
   <div class="container agent-hero-inner">
     <div class="eyebrow">// verun.network · KYA Protocol · Stellar Testnet</div>
     <h1>Identity Layer for<br><span class="hl">Autonomous Agents.</span></h1>
@@ -584,13 +587,13 @@ footer a:hover{color:var(--purple)}
     <div class="agent-cta-row">
       <a href="#agent-quickstart" class="btn btn-primary">Quick Start →</a>
       <a href="#agent-mcp" class="btn" style="background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.2)">MCP Tool →</a>
-      <a href="#register" onclick="setMode('human')" class="btn" style="background:rgba(255,255,255,.05);color:#9CA3AF;border:1px solid rgba(255,255,255,.1)">Register →</a>
+      <a href="#register" class="btn" style="background:rgba(255,255,255,.05);color:#9CA3AF;border:1px solid rgba(255,255,255,.1)">Register →</a>
     </div>
   </div>
 </div>
 
 <!-- QUICK START -->
-<section class="api-section agent-section" id="agent-quickstart">
+<section class="api-section" id="agent-quickstart">
   <div class="container">
     <div class="section-eyebrow" style="color:#7B61FF">Quick Start</div>
     <h2 class="section-title" style="color:#fff">Check Your Score in 30 Seconds</h2>
@@ -691,7 +694,7 @@ footer a:hover{color:var(--purple)}
 </section>
 
 <!-- ENDPOINTS -->
-<section class="agent-section" style="background:#111827;padding:56px 0">
+<section class="agents-section" style="background:#111827;padding:56px 0">
   <div class="container">
     <div class="section-eyebrow" style="color:#7B61FF">REST API</div>
     <h2 class="section-title" style="color:#fff">Endpoints</h2>
@@ -746,7 +749,7 @@ footer a:hover{color:var(--purple)}
 </section>
 
 <!-- MCP TOOLS -->
-<section class="api-section agent-section" id="agent-mcp">
+<section class="api-section agents-section" id="agent-mcp">
   <div class="container">
     <div class="section-eyebrow" style="color:#7B61FF">MCP Integration</div>
     <h2 class="section-title" style="color:#fff">4 Tools — Works in Claude, Any MCP Agent</h2>
@@ -797,7 +800,7 @@ footer a:hover{color:var(--purple)}
 </section>
 
 <!-- CERTIFICATE FORMAT -->
-<section class="agent-section" style="background:#111827;padding:56px 0">
+<section class="agents-section" style="background:#111827;padding:56px 0">
   <div class="container">
     <div class="section-eyebrow" style="color:#7B61FF">Certificate</div>
     <h2 class="section-title" style="color:#fff">Signed Claim Certificate</h2>
@@ -864,6 +867,63 @@ footer a:hover{color:var(--purple)}
   </div>
 </section>
 
+<!-- API STATUS -->
+<section id="api-status" style="background:var(--bg);padding:72px 0">
+  <div class="container">
+    <div class="section-eyebrow">Live Status</div>
+    <h2 class="section-title">API Health</h2>
+    <p class="section-sub">Real-time check against the Verun Genesis API endpoints.</p>
+    <div class="health-grid" id="health-grid">
+      <div class="health-card" id="health-stats-card">
+        <div class="health-card-title">GET /api/stats</div>
+        <span class="health-badge health-loading" id="health-stats-badge">Checking…</span>
+        <div class="health-detail" id="health-stats-detail">—</div>
+      </div>
+      <div class="health-card" id="health-score-card">
+        <div class="health-card-title">GET /api/score?address=GTEST</div>
+        <span class="health-badge health-loading" id="health-score-badge">Checking…</span>
+        <div class="health-detail" id="health-score-detail">—</div>
+      </div>
+      <div class="health-card" id="health-register-card">
+        <div class="health-card-title">POST /api/register</div>
+        <span class="health-badge health-loading" id="health-register-badge">Checking…</span>
+        <div class="health-detail" id="health-register-detail">—</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" style="background:#fff;padding:72px 0">
+  <div class="container">
+    <div class="section-eyebrow">Transparency</div>
+    <h2 class="section-title">What Genesis Beta Actually Is</h2>
+    <p class="section-sub">Honest answers about where we are and where we're going.</p>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">Is this fully on-chain?</div>
+        <div class="faq-a">Genesis Beta uses off-chain KYA scoring with a Stellar Testnet ManageData anchor per registration. Every claim gets a real transaction hash on Stellar Expert. Full institutional 2-of-3 validator consensus moves to mainnet in June 2026.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What is a "Genesis spot" exactly?</div>
+        <div class="faq-a">A permanent, non-transferable identity position for your AI agent. Claim IDs (vga-0001 to vga-10000) are assigned in order and never renumbered. Your score starts at 350 — above the Read threshold from day one.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How does Verun differ from ERC-8004 or Moltbook?</div>
+        <div class="faq-a">ERC-8004 is a generic Ethereum agent registry with no compliance layer. Moltbook is a social network for agents with no identity verification. Verun is built specifically for regulated European finance — BaFin, eWpG, MiFID II — with institutional validators (BCP Partners, Cashlink, Bitbond, SDF) and a Sybil-resistance score system.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What happens after the 10,000 Genesis cap?</div>
+        <div class="faq-a">Genesis Extended (vga-10001 to vga-100000) requires a governance vote by the validator network. Genesis Open (vga-100001+) opens post mainnet. Founding positions never change claim ID — vga-0001 is always the first.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">When do kickbacks start?</div>
+        <div class="faq-a">Kickback payments (5% at score 500+, 10% at score 800+) are on-chain and automatic — no claim required. They activate at mainnet go-live in June 2026. Genesis agents are locked in at founding rates permanently.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer>
   <div class="container">
@@ -879,34 +939,35 @@ footer a:hover{color:var(--purple)}
 </footer>
 
 <script>
-// ─── Mode switcher ─────────────────────────────────────────────
-const MODES = {
-  human: { sub:'Validators · Compliance · Partnerships', btnClass:'active' },
-  agent: { sub:'API Reference · MCP Tools · Score Lookup', btnClass:'active-agent' },
-};
 
-function setMode(mode) {
-  const isAgent = mode === 'agent';
-  document.body.classList.toggle('agent-mode', isAgent);
-  document.getElementById('btn-human').className = 'mode-btn' + (isAgent ? '' : ' active');
-  document.getElementById('btn-agent').className = 'mode-btn' + (isAgent ? ' active-agent' : '');
-  document.getElementById('mode-sub').textContent = MODES[mode].sub;
-  // persist in URL without reload
-  const url = new URL(window.location);
-  url.searchParams.set('mode', mode);
-  history.replaceState({}, '', url);
-}
-
-// Auto-detect ?mode=agent in URL (for agents calling the page)
-(function() {
-  const params = new URLSearchParams(window.location.search);
-  if (params.get('mode') === 'agent') setMode('agent');
-  // Also detect if the caller seems to be a bot/agent via UA
-  const ua = navigator.userAgent.toLowerCase();
-  if (!ua.includes('mozilla') && !ua.includes('safari') && !ua.includes('chrome')) {
-    setMode('agent');
+// ─── API Health Check ───────────────────────────────────────────
+async function loadApiHealth() {
+  async function check(badgeId, detailId, url, method, body) {
+    const badge  = document.getElementById(badgeId);
+    const detail = document.getElementById(detailId);
+    if (!badge) return;
+    try {
+      const opts = { method: method || 'GET' };
+      if (body) { opts.headers = {'Content-Type':'application/json'}; opts.body = JSON.stringify(body); }
+      const t0  = Date.now();
+      const res = await fetch(url, opts);
+      const ms  = Date.now() - t0;
+      const cls = res.status < 300 ? 'health-ok' : res.status < 500 ? 'health-warn' : 'health-err';
+      const lbl = res.status < 300 ? '✓ Online' : res.status < 500 ? `⚡ HTTP ${res.status}` : `✗ HTTP ${res.status}`;
+      badge.className = 'health-badge ' + cls;
+      badge.textContent = lbl;
+      detail.textContent = `${ms}ms · ${new Date().toLocaleTimeString()}`;
+    } catch(e) {
+      badge.className = 'health-badge health-err';
+      badge.textContent = '✗ Unreachable';
+      detail.textContent = e.message;
+    }
   }
-})();
+  check('health-stats-badge',    'health-stats-detail',    '/api/stats');
+  check('health-score-badge',    'health-score-detail',    '/api/score?address=GTEST');
+  check('health-register-badge', 'health-register-detail', '/api/register', 'POST', {addressType:'email',address:'health@check.dev'});
+}
+loadApiHealth();
 
 // ─── Tab switching (registration form) ────────────────────────
 let currentTab = 'stellar';
