@@ -96,12 +96,35 @@ section{padding:72px 0}
 .spots-left{font-size:12px;color:var(--text3);margin-top:8px}
 
 /* ─── GLOBE ─── */
-.globe-wrap{position:relative;max-width:600px;margin:0 auto 24px;border-radius:16px;
+.globe-wrap{position:relative;max-width:880px;margin:0 auto 24px;border-radius:16px;
   overflow:hidden;background:linear-gradient(160deg,#F8F7FF 0%,#EEF0FF 60%,#F0FAFA 100%);
   border:1px solid rgba(123,97,255,.18);box-shadow:0 4px 24px rgba(123,97,255,.10),0 1px 4px rgba(0,0,0,.04)}
-.globe-wrap canvas{display:block;width:100%;height:auto}
 .globe-top-bar{position:absolute;top:0;left:0;right:0;display:flex;align-items:center;
-  justify-content:space-between;padding:12px 16px}
+  justify-content:space-between;padding:10px 16px;z-index:2;pointer-events:none}
+.globe-inner{display:flex;align-items:stretch}
+.globe-panel{width:150px;flex-shrink:0;padding:44px 13px 14px;display:flex;flex-direction:column;
+  gap:6px;font-family:var(--mono);font-size:8.5px;color:var(--text2)}
+.globe-panel-left{border-right:1px solid rgba(123,97,255,.1)}
+.globe-panel-right{border-left:1px solid rgba(123,97,255,.1)}
+.gp-title{font-size:7px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(123,97,255,.7);margin-bottom:2px}
+.gp-sub{font-size:8.5px;font-weight:600;color:var(--text);margin:2px 0 1px}
+.gp-divider{height:1px;background:rgba(123,97,255,.09);margin:3px 0}
+.gp-row{display:flex;justify-content:space-between;align-items:center;padding:1px 0;line-height:1.65}
+.gp-label{color:var(--text3);font-size:8px}
+.gp-val{color:var(--text);font-weight:600;font-size:8px}
+.gp-badge{display:inline-block;padding:1px 5px;border-radius:3px;font-size:7px;font-weight:700;letter-spacing:.05em}
+.gp-green{background:rgba(0,180,138,.12);color:#00B48A}
+.gp-blue{background:rgba(0,82,255,.1);color:#0052FF}
+.gp-purple{background:rgba(123,97,255,.12);color:#7B61FF}
+.gp-orbit{background:rgba(123,97,255,.1);color:#7B61FF}
+.gp-dot{display:inline-block;width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.gp-dot-purple{background:#7B61FF}
+.gp-dot-green{background:#00B48A}
+.globe-canvas-area{flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;position:relative}
+.globe-canvas-area canvas{display:block;width:100%;height:auto}
+.globe-count{font-family:var(--mono);font-size:10px;color:rgba(13,13,43,.32);white-space:nowrap;
+  letter-spacing:.06em;margin-bottom:10px;margin-top:3px}
 .globe-legend{display:flex;align-items:center;gap:14px}
 .globe-legend-item{display:flex;align-items:center;gap:5px;font-family:var(--mono);
   font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase}
@@ -114,9 +137,6 @@ section{padding:72px 0}
 .globe-live{display:flex;align-items:center;gap:5px;font-family:var(--mono);
   font-size:9px;font-weight:600;color:#00B48A;letter-spacing:.1em;text-transform:uppercase}
 .globe-live-dot{width:5px;height:5px;border-radius:50%;background:#00B48A;animation:pulse 2s infinite}
-.globe-count{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);
-  font-family:var(--mono);font-size:10px;color:rgba(13,13,43,.35);white-space:nowrap;
-  letter-spacing:.06em}
 
 /* ─── HERO AGENT ─── */
 .hero-agent{padding:48px 24px 40px;background:#0D0D2B;color:#fff;text-align:center}
@@ -310,8 +330,58 @@ footer a:hover{color:var(--purple)}
         </div>
         <span class="globe-live"><span class="globe-live-dot"></span>Live</span>
       </div>
-      <canvas id="globe-canvas" width="600" height="270"></canvas>
-      <span class="globe-count" id="globe-agent-count">0 genesis agents registered</span>
+      <div class="globe-inner">
+        <!-- LEFT PANEL -->
+        <div class="globe-panel globe-panel-left">
+          <div class="gp-title">Genesis Network</div>
+          <div class="gp-row"><span class="gp-label">Agents</span><span class="gp-val">15</span></div>
+          <div class="gp-row"><span class="gp-label">Validators</span><span class="gp-val">6</span></div>
+          <div class="gp-row"><span class="gp-label">Network</span><span class="gp-val">Stellar</span></div>
+          <div class="gp-row"><span class="gp-label">Phase</span><span class="gp-val">Genesis</span></div>
+          <div class="gp-divider"></div>
+          <div class="gp-title">Trust Layer</div>
+          <div class="gp-row"><span class="gp-label">350+</span><span class="gp-badge gp-green">Read</span></div>
+          <div class="gp-row"><span class="gp-label">500+</span><span class="gp-badge gp-blue">Mint</span></div>
+          <div class="gp-row"><span class="gp-label">800+</span><span class="gp-badge gp-purple">Elite</span></div>
+          <div class="gp-divider"></div>
+          <div class="gp-title">Earth Nodes</div>
+          <div class="gp-row"><span class="gp-dot gp-dot-purple"></span>&nbsp;<span class="gp-label">15 Agents</span></div>
+          <div class="gp-row"><span class="gp-dot gp-dot-green"></span>&nbsp;<span class="gp-label">6 Validators</span></div>
+          <div class="gp-divider"></div>
+          <div class="gp-title">Stellar Testnet</div>
+          <div class="gp-row"><span class="gp-label">Chain</span><span class="gp-val">XLM</span></div>
+          <div class="gp-row"><span class="gp-label">Anchor</span><span class="gp-badge gp-green">Live</span></div>
+        </div>
+        <!-- CANVAS -->
+        <div class="globe-canvas-area">
+          <canvas id="globe-canvas" width="500" height="340"></canvas>
+          <span class="globe-count" id="globe-agent-count">0 genesis agents registered</span>
+        </div>
+        <!-- RIGHT PANEL -->
+        <div class="globe-panel globe-panel-right">
+          <div class="gp-title">Orbital Nodes</div>
+          <div class="gp-row"><span class="gp-label">Status</span><span class="gp-badge gp-green">Active</span></div>
+          <div class="gp-divider"></div>
+          <div class="gp-sub">☽ Moon Node</div>
+          <div class="gp-row"><span class="gp-label">Agents</span><span class="gp-val">2</span></div>
+          <div class="gp-row"><span class="gp-label">Status</span><span class="gp-badge gp-green">Online</span></div>
+          <div class="gp-row"><span class="gp-label">Dist.</span><span class="gp-val">384k km</span></div>
+          <div class="gp-divider"></div>
+          <div class="gp-sub">🛰 ISS Node</div>
+          <div class="gp-row"><span class="gp-label">Agent</span><span class="gp-val">vga-ISS</span></div>
+          <div class="gp-row"><span class="gp-label">Alt.</span><span class="gp-val">408 km</span></div>
+          <div class="gp-row"><span class="gp-label">Inc.</span><span class="gp-val">51.6°</span></div>
+          <div class="gp-divider"></div>
+          <div class="gp-sub">◈ Satellites</div>
+          <div class="gp-row"><span class="gp-label">SAT-A</span><span class="gp-badge gp-orbit">Orbit</span></div>
+          <div class="gp-row"><span class="gp-label">SAT-B</span><span class="gp-badge gp-orbit">Orbit</span></div>
+          <div class="gp-row"><span class="gp-label">Inc.</span><span class="gp-val">45° / 20°</span></div>
+          <div class="gp-divider"></div>
+          <div class="gp-title">Go-Live</div>
+          <div class="gp-row"><span class="gp-label">Mainnet</span><span class="gp-val">Jun '26</span></div>
+          <div class="gp-row"><span class="gp-label">SBT</span><span class="gp-val">Apr '26</span></div>
+        </div>
+      </div>
     </div>
     <div class="counter-bar">
       <div class="counter-row">
@@ -945,53 +1015,102 @@ function copyCode(btn) {
   const ctx = canvas.getContext('2d');
 
   const DPR = Math.min(window.devicePixelRatio || 1, 2);
-  const W = 600, H = 270;
+  const W = 500, H = 340;
   canvas.width  = W * DPR;
   canvas.height = H * DPR;
-  canvas.style.width  = W + 'px';
-  canvas.style.height = H + 'px';
+  canvas.style.width  = '100%';
+  canvas.style.height = 'auto';
   ctx.scale(DPR, DPR);
 
-  const cx = W / 2, cy = H / 2 + 12;
-  const R  = 108;
+  const cx = W / 2, cy = H / 2 + 10;
+  const R  = 100;
 
-  // Genesis agents — global hubs [lat, lon]
+  // ── Continent land dots [lat, lon] ────────────────────────────
+  const LAND = [
+    // Europe
+    [71,28],[70,25],[68,18],[65,14],[62,5],[60,5],[58,5],[55,8],[53,5],
+    [52,5],[52,14],[50,8],[48,2],[46,6],[44,10],[42,12],[40,14],[38,14],[36,5],
+    [50,18],[48,18],[46,18],[44,22],[42,22],[38,24],[36,28],
+    [54,22],[52,22],[48,24],[50,25],[56,22],[60,22],[58,25],[62,22],[64,26],[66,28],
+    [58,-4],[56,-4],[53,-3],[51,-2],[50,0],
+    [44,-8],[42,-8],[40,-8],[38,-8],[36,-6],[38,-4],[40,-4],
+    // North America
+    [70,-95],[68,-90],[65,-85],[62,-75],[58,-75],[55,-74],[52,-75],[48,-70],
+    [45,-65],[43,-70],[40,-74],[38,-76],[35,-76],[32,-80],[28,-80],[25,-80],
+    [60,-125],[58,-124],[55,-130],[52,-128],[50,-125],[48,-124],[45,-124],[42,-124],
+    [38,-122],[35,-120],[32,-117],[28,-110],[25,-105],[22,-106],[20,-105],
+    [18,-95],[20,-100],[22,-100],[25,-100],[28,-100],[30,-100],[32,-96],
+    [35,-96],[38,-95],[40,-95],[43,-92],[46,-88],[48,-88],
+    [50,-95],[52,-97],[55,-100],[58,-97],[62,-100],[65,-105],[68,-110],[70,-120],
+    [65,-165],[62,-164],[60,-165],[63,-163],[70,-130],[72,-130],
+    // South America
+    [12,-72],[10,-68],[8,-65],[5,-62],[2,-60],[0,-50],
+    [-5,-40],[-10,-38],[-15,-39],[-20,-40],[-23,-43],[-28,-48],[-32,-52],
+    [-38,-57],[-42,-64],[-48,-65],[-52,-68],[-55,-65],[-54,-68],[-52,-72],
+    [10,-75],[5,-77],[0,-78],[-5,-80],[-10,-77],[-15,-75],[-18,-70],
+    [-22,-68],[-25,-70],[-30,-70],[-33,-70],[-38,-70],[-42,-72],
+    [0,-65],[-5,-70],[-10,-65],[-15,-60],[-20,-56],[-25,-57],[-30,-58],
+    // Africa
+    [37,10],[35,8],[32,10],[28,10],[22,15],[15,15],[10,14],[5,2],
+    [0,8],[-5,12],[-10,14],[-15,12],[-20,14],[-25,15],[-30,17],[-34,18],
+    [-35,20],[-34,26],[-30,30],[-25,33],[-20,34],[-15,35],[-10,38],
+    [0,42],[5,44],[10,42],[15,42],[20,38],[25,32],[30,32],[35,28],[37,25],
+    [22,10],[15,22],[10,22],[5,22],[0,22],[-5,22],[-10,22],[-15,22],[-20,22],[-25,22],[-30,24],
+    // Middle East / West Asia
+    [40,38],[38,36],[36,36],[34,36],[32,36],[30,32],[28,34],[26,38],[22,40],[18,42],[16,42],
+    [38,28],[40,32],[42,44],[40,50],[38,46],
+    // Central Asia / Russia
+    [70,32],[68,40],[65,45],[60,50],[55,52],[52,55],[50,60],[48,65],
+    [65,60],[62,62],[60,60],[58,58],[55,58],[52,62],[50,65],
+    [48,70],[45,72],[42,72],[38,68],[35,68],[32,68],[28,70],[25,72],[22,75],
+    [60,75],[58,78],[55,78],[52,80],[50,82],[48,82],[45,82],[42,80],
+    [55,88],[52,90],[50,95],[48,98],[45,95],[42,90],[38,88],
+    [65,70],[62,72],[60,68],[58,68],[55,72],[52,75],[48,76],[45,76],[42,78],
+    // East Asia
+    [68,108],[65,105],[62,104],[58,92],[55,90],[52,100],[50,105],
+    [48,110],[45,115],[42,118],[38,115],[35,110],[32,115],[28,112],[25,115],
+    [22,110],[18,106],[15,100],[12,100],[8,100],[5,100],[2,104],[0,106],
+    [40,140],[38,140],[35,135],[32,130],[28,120],[22,120],[18,110],[15,105],
+    [62,140],[58,130],[55,130],[52,130],[48,132],[44,130],[42,130],
+    [36,126],[34,126],[32,128],[26,120],[24,118],
+    [42,142],[40,141],[38,141],[36,136],[34,134],[32,130],
+    [20,100],[18,102],[16,102],[14,100],[12,99],[10,99],[8,98],
+    // Australia
+    [-15,128],[-18,130],[-20,135],[-22,138],[-18,142],[-14,142],[-12,136],
+    [-25,113],[-28,114],[-32,115],[-35,117],[-38,145],[-35,148],[-32,152],
+    [-28,153],[-22,150],[-18,146],[-14,143],
+    [-25,118],[-28,122],[-30,130],[-32,138],[-25,132],[-22,130],[-20,122],
+    // Greenland + Iceland
+    [76,-42],[72,-38],[68,-28],[64,-22],[70,-52],[74,-58],[78,-68],[80,-50],[82,-40],
+    [76,-68],[72,-56],[68,-52],[66,-18],[64,-18],[64,-22],[65,-24],
+  ];
+
+  // Genesis agents [lat, lon]
   const AGENTS = [
-    [50.1,   8.7],  // Frankfurt
-    [51.5,  -0.1],  // London
-    [47.4,   8.5],  // Zurich
-    [48.9,   2.3],  // Paris
-    [52.4,   4.9],  // Amsterdam
-    [52.5,  13.4],  // Berlin
-    [40.7, -74.0],  // New York
-    [37.8,-122.4],  // San Francisco
-    [ 1.3, 103.8],  // Singapore
-    [35.7, 139.7],  // Tokyo
-    [25.2,  55.3],  // Dubai
-    [-33.9,151.2],  // Sydney
-    [19.1,  72.9],  // Mumbai
-    [43.7, -79.4],  // Toronto
-    [-23.5,-46.6],  // São Paulo
+    [50.1, 8.7],[51.5,-0.1],[47.4, 8.5],[48.9, 2.3],[52.4, 4.9],
+    [52.5,13.4],[40.7,-74.0],[37.8,-122.4],[1.3,103.8],[35.7,139.7],
+    [25.2,55.3],[-33.9,151.2],[19.1,72.9],[43.7,-79.4],[-23.5,-46.6],
   ];
 
-  // Validators — regulated European financial hubs [lat, lon]
+  // Validators [lat, lon]
   const VALIDATORS = [
-    [50.1,   8.7],  // Frankfurt (BaFin)
-    [49.6,   6.1],  // Luxembourg (fund capital)
-    [50.8,   4.4],  // Brussels (EBA)
-    [47.4,   8.5],  // Zurich (FINMA)
-    [48.2,  16.4],  // Vienna (FMA)
-    [45.5,   9.2],  // Milan (Consob)
+    [50.1,8.7],[49.6,6.1],[50.8,4.4],[47.4,8.5],[48.2,16.4],[45.5,9.2],
   ];
 
-  // Agent arcs [i, j]
   const AGENT_ARCS = [[0,1],[0,3],[0,4],[2,3],[1,4],[6,7],[8,9],[0,10],[8,12]];
-  // Validator-to-agent arcs (validator idx, agent idx)
   const VAL_ARCS   = [[0,0],[0,1],[1,3],[2,4],[3,2],[4,0],[5,3]];
 
   let rot = 0;
   const agentArcProg = AGENT_ARCS.map(() => Math.random());
   const valArcProg   = VAL_ARCS.map(() => Math.random() * 2);
+
+  // Satellite definitions
+  const SATS = [
+    { r:132, speed:1.26, inc:51.6*Math.PI/180, offset:0,   label:'ISS',   color:'#A5B4FC', shape:'iss' },
+    { r:120, speed:0.90, inc:45  *Math.PI/180, offset:2.1, label:'SAT-A', color:'#C4B9FF', shape:'dot' },
+    { r:116, speed:0.72, inc:20  *Math.PI/180, offset:0.8, label:'SAT-B', color:'#00C49A', shape:'dot' },
+  ];
+  const MOON_R = 158, MOON_INC = 5 * Math.PI / 180, MOON_SPEED = 0.014;
 
   function toXYZ(lat, lon, rotation) {
     const phi   = (90 - lat) * Math.PI / 180;
@@ -1004,162 +1123,222 @@ function copyCode(btn) {
   }
 
   function proj(x, y, z) {
-    return { px: cx + x, py: cy + y, vis: z >= -10 };
+    return { px: cx + x, py: cy + y, vis: z >= -R * 0.08 };
+  }
+
+  function orbPos(orbitR, theta, inc) {
+    const x = orbitR * Math.cos(theta);
+    const y = orbitR * Math.sin(theta) * Math.cos(inc);
+    const z = orbitR * Math.sin(theta) * Math.sin(inc);
+    return { px: cx + x, py: cy + y, z };
+  }
+
+  function behindSphere(px, py, z) {
+    if (z >= 0) return false;
+    const dx = px - cx, dy = py - cy;
+    return (dx*dx + dy*dy) < R * R * 1.04;
   }
 
   function drawArc(pA, pB, color, t, progress, speed) {
     if (!pA.vis || !pB.vis) return;
     const mx = (pA.px + pB.px) * .5;
-    const my = (pA.py + pB.py) * .5 - 18; // lift arc upward
+    const my = (pA.py + pB.py) * .5 - 16;
     const phase = ((t * speed + progress * 4) % 4);
     if (phase > 1) return;
-    const head = phase;
-    const steps = 36;
+    const steps = 34;
     ctx.beginPath();
     let started = false;
-    for (let s = 0; s <= steps * head; s++) {
+    for (let s = 0; s <= steps * phase; s++) {
       const q = s / steps;
       const bx = (1-q)*(1-q)*pA.px + 2*(1-q)*q*mx + q*q*pB.px;
       const by = (1-q)*(1-q)*pA.py + 2*(1-q)*q*my + q*q*pB.py;
       started ? ctx.lineTo(bx, by) : ctx.moveTo(bx, by);
       started = true;
     }
-    ctx.strokeStyle = color;
-    ctx.lineWidth = 1;
-    ctx.stroke();
+    ctx.strokeStyle = color; ctx.lineWidth = 1; ctx.stroke();
+  }
+
+  function drawOrbitPath(orbitR, inc, color) {
+    ctx.beginPath();
+    for (let th = 0; th <= Math.PI * 2 + 0.1; th += 0.08) {
+      const px2 = cx + orbitR * Math.cos(th);
+      const py2 = cy + orbitR * Math.sin(th) * Math.cos(inc);
+      th === 0 ? ctx.moveTo(px2, py2) : ctx.lineTo(px2, py2);
+    }
+    ctx.strokeStyle = color; ctx.lineWidth = .4;
+    ctx.setLineDash([2, 6]); ctx.stroke(); ctx.setLineDash([]);
+  }
+
+  function drawSatellite(px, py, sat, alpha) {
+    if (sat.shape === 'iss') {
+      ctx.save(); ctx.globalAlpha = alpha;
+      ctx.fillStyle = sat.color;
+      ctx.fillRect(px - 7, py - 1.5, 4.5, 3);
+      ctx.fillRect(px + 2.5, py - 1.5, 4.5, 3);
+      ctx.fillStyle = '#E0D8FF';
+      ctx.fillRect(px - 2, py - 2, 4, 4);
+      ctx.font = '6.5px IBM Plex Mono,monospace';
+      ctx.fillStyle = `rgba(100,80,200,${Math.min(alpha,.85)})`;
+      ctx.textAlign = 'center';
+      ctx.fillText('ISS', px, py - 9);
+      ctx.restore();
+    } else {
+      ctx.save(); ctx.globalAlpha = alpha;
+      ctx.beginPath(); ctx.arc(px, py, 2.5, 0, Math.PI * 2);
+      ctx.fillStyle = sat.color; ctx.fill();
+      ctx.font = '6.5px IBM Plex Mono,monospace';
+      ctx.fillStyle = `rgba(100,80,200,${Math.min(alpha,.75)})`;
+      ctx.textAlign = 'center';
+      ctx.fillText(sat.label, px, py - 7);
+      ctx.restore();
+    }
+  }
+
+  function drawMoon(px, py, z) {
+    const mr = 12;
+    const front = z >= 0;
+    ctx.save(); ctx.globalAlpha = front ? 0.95 : 0.28;
+    // glow
+    const mg = ctx.createRadialGradient(px, py, 0, px, py, mr + 9);
+    mg.addColorStop(0, 'rgba(200,192,228,.2)'); mg.addColorStop(1, 'rgba(200,192,228,0)');
+    ctx.beginPath(); ctx.arc(px, py, mr + 9, 0, Math.PI * 2); ctx.fillStyle = mg; ctx.fill();
+    // body
+    const mb = ctx.createRadialGradient(px - 3, py - 3, 0, px, py, mr);
+    mb.addColorStop(0, '#EAE5F5'); mb.addColorStop(.5, '#D5CCEC'); mb.addColorStop(1, '#B9B0D4');
+    ctx.beginPath(); ctx.arc(px, py, mr, 0, Math.PI * 2);
+    ctx.fillStyle = mb; ctx.fill();
+    ctx.strokeStyle = 'rgba(140,128,175,.3)'; ctx.lineWidth = .8; ctx.stroke();
+    // craters
+    [[-4,-3,2.5],[3,1,2],[0,5,1.5],[-2,2,1.2],[4,-4,1]].forEach(([dx,dy,cr]) => {
+      ctx.beginPath(); ctx.arc(px+dx, py+dy, cr, 0, Math.PI*2);
+      ctx.fillStyle = 'rgba(145,135,168,.22)'; ctx.fill();
+    });
+    // agent dots
+    [[px-3,py+2],[px+3,py-3]].forEach(([ax,ay]) => {
+      ctx.beginPath(); ctx.arc(ax, ay, 1.5, 0, Math.PI*2);
+      ctx.fillStyle = 'rgba(123,97,255,.95)'; ctx.fill();
+      const ag = ctx.createRadialGradient(ax,ay,0,ax,ay,5);
+      ag.addColorStop(0,'rgba(123,97,255,.25)'); ag.addColorStop(1,'rgba(123,97,255,0)');
+      ctx.beginPath(); ctx.arc(ax,ay,5,0,Math.PI*2); ctx.fillStyle=ag; ctx.fill();
+    });
+    if (front) {
+      ctx.font = '7px IBM Plex Mono,monospace';
+      ctx.fillStyle = 'rgba(70,50,150,.85)'; ctx.textAlign = 'center';
+      ctx.fillText('MOON NODE', px, py - mr - 5);
+      ctx.fillStyle = 'rgba(123,97,255,.6)'; ctx.font = '6.5px IBM Plex Mono,monospace';
+      ctx.fillText('2 Agents', px, py + mr + 9);
+    }
+    ctx.restore();
   }
 
   function drawFrame(rotation) {
     ctx.clearRect(0, 0, W, H);
-
-    // Light sphere base
-    const sphereGrad = ctx.createRadialGradient(cx - 25, cy - 25, 0, cx, cy, R);
-    sphereGrad.addColorStop(0, 'rgba(255,255,255,.92)');
-    sphereGrad.addColorStop(.6, 'rgba(240,238,255,.7)');
-    sphereGrad.addColorStop(1, 'rgba(220,215,255,.5)');
-    ctx.beginPath();
-    ctx.arc(cx, cy, R, 0, Math.PI * 2);
-    ctx.fillStyle = sphereGrad;
-    ctx.fill();
-
-    // Latitude grid
-    for (let lat = -75; lat <= 75; lat += 15) {
-      ctx.beginPath();
-      let started = false;
-      for (let lon = -180; lon <= 182; lon += 2) {
-        const {x, y, z} = toXYZ(lat, lon, rotation);
-        const {px, py, vis} = proj(x, y, z);
-        if (vis) { started ? ctx.lineTo(px, py) : ctx.moveTo(px, py); started = true; }
-        else { started = false; }
-      }
-      ctx.strokeStyle = 'rgba(123,97,255,.12)';
-      ctx.lineWidth = .5;
-      ctx.stroke();
-    }
-
-    // Longitude grid
-    for (let lon = -180; lon < 180; lon += 15) {
-      ctx.beginPath();
-      let started = false;
-      for (let lat = -90; lat <= 90; lat += 2) {
-        const {x, y, z} = toXYZ(lat, lon, rotation);
-        const {px, py, vis} = proj(x, y, z);
-        if (vis) { started ? ctx.lineTo(px, py) : ctx.moveTo(px, py); started = true; }
-        else { started = false; }
-      }
-      ctx.strokeStyle = 'rgba(123,97,255,.08)';
-      ctx.lineWidth = .5;
-      ctx.stroke();
-    }
-
     const t = Date.now() / 1000;
 
-    // Agent arcs (purple)
-    AGENT_ARCS.forEach(([a, b], i) => {
-      const pA = proj(...Object.values(toXYZ(AGENTS[a][0], AGENTS[a][1], rotation)));
-      const pB = proj(...Object.values(toXYZ(AGENTS[b][0], AGENTS[b][1], rotation)));
-      drawArc(pA, pB, 'rgba(123,97,255,.35)', t, agentArcProg[i], 0.35);
-    });
+    // Orbit paths (behind everything)
+    SATS.forEach(s => drawOrbitPath(s.r, s.inc, 'rgba(123,97,255,.1)'));
+    drawOrbitPath(MOON_R, MOON_INC, 'rgba(180,168,210,.14)');
 
-    // Validator→Agent arcs (green)
-    VAL_ARCS.forEach(([v, a], i) => {
-      const pV = proj(...Object.values(toXYZ(VALIDATORS[v][0], VALIDATORS[v][1], rotation)));
-      const pA = proj(...Object.values(toXYZ(AGENTS[a][0], AGENTS[a][1], rotation)));
-      drawArc(pV, pA, 'rgba(0,180,138,.4)', t, valArcProg[i], 0.28);
-    });
+    // Sphere base
+    const sg = ctx.createRadialGradient(cx-22, cy-22, 0, cx, cy, R);
+    sg.addColorStop(0, 'rgba(255,255,255,.95)');
+    sg.addColorStop(.6, 'rgba(240,237,255,.74)');
+    sg.addColorStop(1, 'rgba(218,212,255,.5)');
+    ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI*2); ctx.fillStyle = sg; ctx.fill();
 
-    // Agent dots (purple circles)
-    AGENTS.forEach(([lat, lon], i) => {
+    // Land dots
+    LAND.forEach(([lat, lon]) => {
       const {x, y, z} = toXYZ(lat, lon, rotation);
       const {px, py, vis} = proj(x, y, z);
       if (!vis) return;
       const depth = (z / R + 1) / 2;
-      const alpha = .2 + depth * .8;
-      const pulse = .5 + .5 * Math.sin(t * 1.8 + i * .9);
-
-      // Glow
-      const gr = 9 + pulse * 4;
-      const glow = ctx.createRadialGradient(px, py, 0, px, py, gr);
-      glow.addColorStop(0, `rgba(123,97,255,${alpha * .3})`);
-      glow.addColorStop(1, 'rgba(123,97,255,0)');
-      ctx.beginPath(); ctx.arc(px, py, gr, 0, Math.PI * 2);
-      ctx.fillStyle = glow; ctx.fill();
-
-      // Ring
-      ctx.beginPath(); ctx.arc(px, py, 3 + pulse, 0, Math.PI * 2);
-      ctx.strokeStyle = `rgba(123,97,255,${alpha * .55})`; ctx.lineWidth = .8; ctx.stroke();
-
-      // Core
-      ctx.beginPath(); ctx.arc(px, py, 2.2, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(123,97,255,${alpha})`; ctx.fill();
-
-      // Center highlight
-      ctx.beginPath(); ctx.arc(px, py, .8, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(255,255,255,${alpha * .9})`; ctx.fill();
+      ctx.beginPath(); ctx.arc(px, py, 1.3, 0, Math.PI*2);
+      ctx.fillStyle = `rgba(70,52,170,${0.1 + depth * 0.22})`; ctx.fill();
     });
 
-    // Validator dots (green diamonds)
-    VALIDATORS.forEach(([lat, lon], i) => {
-      const {x, y, z} = toXYZ(lat, lon, rotation);
-      const {px, py, vis} = proj(x, y, z);
-      if (!vis) return;
-      const depth = (z / R + 1) / 2;
-      const alpha = .25 + depth * .75;
-      const pulse = .5 + .5 * Math.sin(t * 1.4 + i * 1.2);
-      const s = 4.5 + pulse * 1.5; // diamond half-size
+    // Grid
+    for (let lat = -75; lat <= 75; lat += 15) {
+      ctx.beginPath(); let s = false;
+      for (let lon = -180; lon <= 182; lon += 3) {
+        const {x,y,z}=toXYZ(lat,lon,rotation); const {px,py,vis}=proj(x,y,z);
+        if(vis){s?ctx.lineTo(px,py):ctx.moveTo(px,py);s=true;}else s=false;
+      }
+      ctx.strokeStyle='rgba(123,97,255,.07)'; ctx.lineWidth=.5; ctx.stroke();
+    }
+    for (let lon = -180; lon < 180; lon += 15) {
+      ctx.beginPath(); let s = false;
+      for (let lat = -90; lat <= 90; lat += 3) {
+        const {x,y,z}=toXYZ(lat,lon,rotation); const {px,py,vis}=proj(x,y,z);
+        if(vis){s?ctx.lineTo(px,py):ctx.moveTo(px,py);s=true;}else s=false;
+      }
+      ctx.strokeStyle='rgba(123,97,255,.05)'; ctx.lineWidth=.5; ctx.stroke();
+    }
 
-      // Glow
-      const gr = 12 + pulse * 4;
-      const glow = ctx.createRadialGradient(px, py, 0, px, py, gr);
-      glow.addColorStop(0, `rgba(0,180,138,${alpha * .35})`);
-      glow.addColorStop(1, 'rgba(0,180,138,0)');
-      ctx.beginPath(); ctx.arc(px, py, gr, 0, Math.PI * 2);
-      ctx.fillStyle = glow; ctx.fill();
+    // Arcs
+    AGENT_ARCS.forEach(([a,b],i)=>{
+      const pA=proj(...Object.values(toXYZ(AGENTS[a][0],AGENTS[a][1],rotation)));
+      const pB=proj(...Object.values(toXYZ(AGENTS[b][0],AGENTS[b][1],rotation)));
+      drawArc(pA,pB,'rgba(123,97,255,.32)',t,agentArcProg[i],0.35);
+    });
+    VAL_ARCS.forEach(([v,a],i)=>{
+      const pV=proj(...Object.values(toXYZ(VALIDATORS[v][0],VALIDATORS[v][1],rotation)));
+      const pA=proj(...Object.values(toXYZ(AGENTS[a][0],AGENTS[a][1],rotation)));
+      drawArc(pV,pA,'rgba(0,180,138,.34)',t,valArcProg[i],0.28);
+    });
 
-      // Diamond shape
+    // Agent dots
+    AGENTS.forEach(([lat,lon],i)=>{
+      const {x,y,z}=toXYZ(lat,lon,rotation); const {px,py,vis}=proj(x,y,z);
+      if(!vis) return;
+      const depth=(z/R+1)/2, alpha=.2+depth*.8, pulse=.5+.5*Math.sin(t*1.8+i*.9);
+      const gr=8+pulse*4, glow=ctx.createRadialGradient(px,py,0,px,py,gr);
+      glow.addColorStop(0,`rgba(123,97,255,${alpha*.3})`); glow.addColorStop(1,'rgba(123,97,255,0)');
+      ctx.beginPath();ctx.arc(px,py,gr,0,Math.PI*2);ctx.fillStyle=glow;ctx.fill();
+      ctx.beginPath();ctx.arc(px,py,3+pulse*.5,0,Math.PI*2);
+      ctx.strokeStyle=`rgba(123,97,255,${alpha*.5})`;ctx.lineWidth=.8;ctx.stroke();
+      ctx.beginPath();ctx.arc(px,py,2,0,Math.PI*2);
+      ctx.fillStyle=`rgba(123,97,255,${alpha})`;ctx.fill();
+      ctx.beginPath();ctx.arc(px,py,.7,0,Math.PI*2);
+      ctx.fillStyle=`rgba(255,255,255,${alpha*.9})`;ctx.fill();
+    });
+
+    // Validator dots
+    VALIDATORS.forEach(([lat,lon],i)=>{
+      const {x,y,z}=toXYZ(lat,lon,rotation); const {px,py,vis}=proj(x,y,z);
+      if(!vis) return;
+      const depth=(z/R+1)/2, alpha=.25+depth*.75, pulse=.5+.5*Math.sin(t*1.4+i*1.2);
+      const s=4+pulse*1.2, gr=10+pulse*3, glow=ctx.createRadialGradient(px,py,0,px,py,gr);
+      glow.addColorStop(0,`rgba(0,180,138,${alpha*.3})`);glow.addColorStop(1,'rgba(0,180,138,0)');
+      ctx.beginPath();ctx.arc(px,py,gr,0,Math.PI*2);ctx.fillStyle=glow;ctx.fill();
       ctx.beginPath();
-      ctx.moveTo(px, py - s);
-      ctx.lineTo(px + s * .7, py);
-      ctx.lineTo(px, py + s);
-      ctx.lineTo(px - s * .7, py);
+      ctx.moveTo(px,py-s);ctx.lineTo(px+s*.7,py);ctx.lineTo(px,py+s);ctx.lineTo(px-s*.7,py);
       ctx.closePath();
-      ctx.fillStyle = `rgba(0,180,138,${alpha * .9})`;
-      ctx.fill();
-      ctx.strokeStyle = `rgba(255,255,255,${alpha * .6})`;
-      ctx.lineWidth = .8;
-      ctx.stroke();
-
-      // Center
-      ctx.beginPath(); ctx.arc(px, py, .8, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(255,255,255,${alpha})`; ctx.fill();
+      ctx.fillStyle=`rgba(0,180,138,${alpha*.9})`;ctx.fill();
+      ctx.strokeStyle=`rgba(255,255,255,${alpha*.6})`;ctx.lineWidth=.7;ctx.stroke();
+      ctx.beginPath();ctx.arc(px,py,.7,0,Math.PI*2);
+      ctx.fillStyle=`rgba(255,255,255,${alpha})`;ctx.fill();
     });
 
     // Sphere border
-    ctx.beginPath();
-    ctx.arc(cx, cy, R, 0, Math.PI * 2);
-    ctx.strokeStyle = 'rgba(123,97,255,.15)';
-    ctx.lineWidth = 1;
-    ctx.stroke();
+    ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI*2);
+    ctx.strokeStyle='rgba(123,97,255,.14)'; ctx.lineWidth=1; ctx.stroke();
+
+    // Orbital objects — behind sphere first
+    const moonTheta = t * MOON_SPEED;
+    const moon = orbPos(MOON_R, moonTheta, MOON_INC);
+    SATS.forEach(sat => {
+      const o = orbPos(sat.r, t * sat.speed + sat.offset, sat.inc);
+      if (behindSphere(o.px, o.py, o.z)) return;
+      if (o.z < 0) drawSatellite(o.px, o.py, sat, 0.22);
+    });
+    if (moon.z < 0 && !behindSphere(moon.px, moon.py, moon.z)) drawMoon(moon.px, moon.py, moon.z);
+
+    // Orbital objects — front
+    SATS.forEach(sat => {
+      const o = orbPos(sat.r, t * sat.speed + sat.offset, sat.inc);
+      if (o.z >= 0) drawSatellite(o.px, o.py, sat, 0.9);
+    });
+    if (moon.z >= 0) drawMoon(moon.px, moon.py, moon.z);
   }
 
   function animate() {
