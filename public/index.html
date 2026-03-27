@@ -889,7 +889,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     const theta = (lon + rotation) * Math.PI / 180;
     return { x: R * Math.sin(phi) * Math.cos(theta), y: -R * Math.cos(phi), z: R * Math.sin(phi) * Math.sin(theta) };
   }
-  function proj(x, y, z) { return { px: cx + x, py: cy + y, vis: z >= -R * 0.02 }; }
+  function proj(x, y, z) { return { px: cx - x, py: cy + y, vis: z >= -R * 0.02 }; }
 
   function drawArc(pA, pB, color, t, progress, speed) {
     if (!pA.vis || !pB.vis) return;
