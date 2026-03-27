@@ -66,21 +66,20 @@ a{color:inherit;text-decoration:none}
 .globe-wrap{position:absolute;right:-4%;top:56px;bottom:0;z-index:1;
   pointer-events:none;display:flex;align-items:center;justify-content:flex-end}
 .globe-panel{position:relative}
-.globe-legend{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);
-  display:flex;gap:20px;z-index:3}
+.globe-info{position:absolute;left:0;top:50%;transform:translateY(-50%);z-index:3;
+  display:flex;flex-direction:column;gap:16px}
+.globe-legend{display:flex;flex-direction:column;gap:8px}
 .gl-item{display:flex;align-items:center;gap:6px;
   font-family:var(--mono);font-size:9px;font-weight:600;
   letter-spacing:.12em;text-transform:uppercase;color:var(--text3)}
 .gl-dot{width:6px;height:6px;border-radius:50%;background:var(--purple)}
 .gl-diamond{width:6px;height:6px;transform:rotate(45deg);border-radius:1px;background:var(--green)}
-.globe-live{position:absolute;top:24px;right:40px;z-index:3;
-  display:flex;align-items:center;gap:6px;
+.globe-live{display:flex;align-items:center;gap:6px;
   font-family:var(--mono);font-size:10px;font-weight:600;
   letter-spacing:.1em;color:var(--green)}
 .globe-live-dot{width:5px;height:5px;border-radius:50%;background:var(--green);
   animation:blink 2s infinite}
-.globe-count{position:absolute;bottom:24px;right:40px;z-index:3;
-  font-family:var(--mono);font-size:10px;color:var(--text3);
+.globe-count{font-family:var(--mono);font-size:10px;color:var(--text3);
   letter-spacing:.08em}
 #globe-canvas{display:block}
 
@@ -205,8 +204,9 @@ footer{padding:28px 64px;display:flex;justify-content:space-between;align-items:
   .globe-wrap{position:relative;right:auto;top:auto;transform:none;
     width:100%;display:flex;justify-content:center;margin:0 auto;pointer-events:none}
   #globe-canvas{width:90vw!important;height:auto!important;max-width:400px}
-  .globe-legend{bottom:12px}.globe-count{bottom:12px;right:20px}
-  .globe-live{top:12px;right:20px}
+  .globe-info{position:relative;left:auto;top:auto;transform:none;
+    flex-direction:row;gap:16px;align-items:center;justify-content:center;padding:0 0 12px}
+  .globe-legend{flex-direction:row;gap:12px}
   .container{padding:0 24px}
   .code-grid{grid-template-columns:1fr}
   .reg-inner{grid-template-columns:1fr}
@@ -246,13 +246,15 @@ footer{padding:28px 64px;display:flex;justify-content:space-between;align-items:
   <!-- GLOBE (absolute on desktop, flow on mobile) -->
   <div class="globe-wrap">
     <div class="globe-panel">
-      <div class="globe-legend">
-        <div class="gl-item"><div class="gl-dot"></div>Agents</div>
-        <div class="gl-item"><div class="gl-diamond"></div>Validators</div>
+      <div class="globe-info">
+        <div class="globe-live"><div class="globe-live-dot"></div>LIVE</div>
+        <div class="globe-legend">
+          <div class="gl-item"><div class="gl-dot"></div>Agents</div>
+          <div class="gl-item"><div class="gl-diamond"></div>Validators</div>
+        </div>
+        <div class="globe-count" id="globe-agent-count">0 genesis agents</div>
       </div>
-      <div class="globe-live"><div class="globe-live-dot"></div>LIVE</div>
       <canvas id="globe-canvas" width="720" height="620"></canvas>
-      <div class="globe-count" id="globe-agent-count">0 genesis agents</div>
     </div>
   </div>
 
@@ -813,7 +815,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   const AGENT_ARCS = [[0,1],[0,3],[0,4],[2,3],[1,4],[6,7],[8,9],[0,10],[8,12]];
   const VAL_ARCS   = [[0,0],[0,1],[1,3],[2,4],[3,2],[4,0],[5,3]];
 
-  let rot = 0;
+  let rot = 75; // start facing Europe
   const agentArcProg = AGENT_ARCS.map(() => Math.random());
   const valArcProg   = VAL_ARCS.map(() => Math.random() * 2);
 
@@ -822,7 +824,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     const theta = (lon + rotation) * Math.PI / 180;
     return { x: R * Math.sin(phi) * Math.cos(theta), y: -R * Math.cos(phi), z: R * Math.sin(phi) * Math.sin(theta) };
   }
-  function proj(x, y, z) { return { px: cx + x, py: cy + y, vis: z >= -R * 0.08 }; }
+  function proj(x, y, z) { return { px: cx + x, py: cy + y, vis: z >= -R * 0.02 }; }
 
   function drawArc(pA, pB, color, t, progress, speed) {
     if (!pA.vis || !pB.vis) return;
@@ -857,8 +859,9 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
       const {px, py, vis} = proj(x, y, z);
       if (!vis) return;
       const depth = (z / R + 1) / 2;
-      ctx.beginPath(); ctx.arc(px, py, 2.2, 0, Math.PI*2);
-      ctx.fillStyle = `rgba(60,45,160,${0.14 + depth * 0.28})`; ctx.fill();
+      const r = 2.8 + depth * 0.8;
+      ctx.beginPath(); ctx.arc(px, py, r, 0, Math.PI*2);
+      ctx.fillStyle = `rgba(55,40,140,${0.20 + depth * 0.40})`; ctx.fill();
     });
 
     // Grid
